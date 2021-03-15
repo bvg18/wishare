@@ -14,7 +14,40 @@
                         </div>
                     @endif
 
-                    {{$name}}
+                    <h1>{{$wishlist->name}}</h1>
+
+                    
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Imgen</th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                URL
+                            </th>
+                            
+                        </tr>
+                    @foreach($products as $product)
+                        <tr>
+                            <td>
+                                <!--img src="img"$product->image}} alt="Logo"/-->
+                                <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="300" height="31">
+                            </td>
+                            <td>
+                                {{$product->name}}
+                            <td>
+                                {{$product->description}}
+                            </td>
+                            <td>
+                                <a href="{{$product->url}}">Ver</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>

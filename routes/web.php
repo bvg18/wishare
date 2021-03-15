@@ -17,4 +17,4 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/whislist/{id}', 'WishlistController@listProducts');
+Route::get('/wishlist/{id}', 'WishlistController@listProducts');

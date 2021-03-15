@@ -9,13 +9,16 @@ use App\Product;
 class WishlistController extends Controller
 {
     public function listProducts($id) {
-        $w = Wishlist::findOrFail($id);
+        $wishlist = Wishlist::findOrFail($id);
 
         // falta el array de productos
-        // $w
+        $products = Product::all();/*->filter(function ($wishlistId, $valor) {
+            return $wishlistId == $id;
+        });*/
+        //'wishlists_id' => $w->id
 
         //$list = array[Product] //añadir los porductos que tiene $w
 
-        return view('wishlist', ['name' => $w->name/*, 'list' => $list*/]);
+        return view('wishlist', ['wishlist' => $wishlist, 'products' => $products]);
     }
 }
