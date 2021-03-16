@@ -26,6 +26,12 @@ class WishlistsTableSeeder extends Seeder
                 'users_id' => $user->id,
             ]
         );
+        $w = Wishlist::create(
+            [
+                'name' => 'Tecnología',
+                'users_id' => $user->id,
+            ]
+        );
         $w -> save();
     }
 }

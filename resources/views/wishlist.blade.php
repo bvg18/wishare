@@ -14,12 +14,14 @@
                         </div>
                     @endif
 
-                    <h1>{{$wishlist->name}}</h1>
-
+                    <div class="d-flex justify-content-between align-items-baseline">
+                        <h1> {{$wishlist->name}} </h1>
+                        <a href="#">Add new product</a>
+                    </div>
                     
                     <table class="table table-striped">
                         <tr>
-                            <th>Imgen</th>
+                            <th>Imagen</th>
                             <th>
                                 Nombre
                             </th>
