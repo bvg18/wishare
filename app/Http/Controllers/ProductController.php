@@ -37,5 +37,6 @@ class ProductController extends Controller
         $product->save();
 
         dd(request()->all());
+        return view('home'); 
     }
 }
