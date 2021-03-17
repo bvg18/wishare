@@ -12,9 +12,10 @@ class WishlistController extends Controller
         $wishlist = Wishlist::findOrFail($id);
 
         // falta el array de productos
-        $products = Product::all();/*->filter(function ($wishlistId, $valor) {
+        /*$products = Product::all();/*->filter(function ($wishlistId, $valor) {
             return $wishlistId == $id;
         });*/
+        $products = $wishlist->products;
         //'wishlists_id' => $w->id
 
         //$list = array[Product] //añadir los porductos que tiene $w

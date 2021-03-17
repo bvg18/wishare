@@ -18,4 +18,7 @@ class Product extends Model
         'id', 'name', 'description', 'url', 'image'
     ];
 
+    public function wishlist() {
+        return belongsTo('App\Wislist', 'wishlists_id');
+    }
 }
