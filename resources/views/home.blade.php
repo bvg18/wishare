@@ -15,6 +15,9 @@
                     @endif
 
                     ¡Bienvenido a Wishare!
+                    <a class="nav-link" href="{{action('WishlistController@listMyWishlists') }}">Mis listas</a>
+                    
+
                 </div>
             </div>
         </div>
