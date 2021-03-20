@@ -36,7 +36,7 @@
             @if(Auth::check())
               <ul class="navbar-nav">
               <li class="nav-item">
-                    <a class="nav-link" href="{{action('WishlistController@listMyWishlists') }}"> Mis listas</a>
+                    <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> Mis listas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/product/create') }}">Crear Producto</a>

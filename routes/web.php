@@ -20,8 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/{id}', 'UserController@showUser');
 
 //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
-Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists de otros usuarios
-Route::get('/wishlists', 'WishlistController@listMyWishlists');//Para listar mis wishlists
+Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
+
 Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
 
 Route::get('/product/create', 'ProductController@create');

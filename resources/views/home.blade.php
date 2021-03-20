@@ -15,7 +15,7 @@
                     @endif
 
                     ¡Bienvenido a Wishare!
-                    <a class="nav-link" href="{{action('WishlistController@listMyWishlists') }}">Mis listas</a>
+                    <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}">Mis listas</a>
                     
 
                 </div>
