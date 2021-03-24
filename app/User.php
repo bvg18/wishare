@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function wishlists() {
         return $this->hasMany('App\Wishlist', 'users_id');
     }
+
+    public function followers(){
+        return $this->belongsToMany('App\User','user_followers','user_id','follower_id');
+    }
+
+    public function follows(){
+        return $this->belongsToMany('App\User','user_followers','follower_id','user_id');
+    }
 }
