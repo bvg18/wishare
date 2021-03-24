@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         //Insertar filas en la tabla users
-        $user = User::create(
+        $user1 = User::create(
             [
                 'name' => 'admin',
                 'email' => 'admin@wishare.es',
@@ -24,9 +24,9 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-        $user -> save();
+        $user1 -> save();
 
-        $user = User::create(
+        $user2= User::create(
             [
                 'name' => 'usuario',
                 'email' => 'usuario@wishare.es',
@@ -34,6 +34,10 @@ class UsersTableSeeder extends Seeder
             ]
         );
 
-        $user -> save();
+        $user2 -> save();
+
+        $user2->follows()->attach($user1->id);
+
+        
     }
 }
