@@ -5,21 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Wishlist;
 use App\Product;
+use App\User;
 
 class WishlistController extends Controller
 {
-    public function listProducts($id) {
-        $wishlist = Wishlist::findOrFail($id);
+    /*public function showMyOnlyWishlist() {//Cuando sólo hay una wishlist por usuario
+        
+        $user = auth()->user();
 
-        // falta el array de productos
-        /*$products = Product::all();/*->filter(function ($wishlistId, $valor) {
-            return $wishlistId == $id;
-        });*/
+        $wishlists = $user->wishlists;
+        $wishlist = $wishlists->first();
+
         $products = $wishlist->products;
-        //'wishlists_id' => $w->id
 
-        //$list = array[Product] //añadir los porductos que tiene $w
+        return view('wishlist', ['wishlist' => $wishlist, 'products' => $products]);
+    }*/
+
+    public function showWishlist($id) {
+        
+        $wishlist = Wishlist::find($id);
+
+        $products = $wishlist->products;
 
         return view('wishlist', ['wishlist' => $wishlist, 'products' => $products]);
     }
+
+    public function listWishlist($userId) {
+        
+        $user = User::findOrFail($userId);
+        $wishlists = $user->wishlists;
+
+        return view('wishlists', ['user' => $user, 'wishlists' => $wishlists]);
+    }
+
 }

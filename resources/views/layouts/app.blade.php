@@ -33,14 +33,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             <!--Esto es para la presentacion simplemente -->
+            @if(Auth::check())
               <ul class="navbar-nav">
               <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/wishlist/1') }}">Lista</a>
+                    <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> Mis listas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/product/create') }}">Crear Producto</a>
                 </li>
               </ul>
+            @endif
 
               
                 
@@ -70,7 +72,7 @@
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('user/1') }}">
+                                    <a class="dropdown-item" href="{{action('UserController@showUser', [Auth::user()->id]) }}">
                                         {{ __('Ver cuenta') }}
                                     </a>
 

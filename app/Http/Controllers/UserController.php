@@ -7,7 +7,7 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function show($id)
+    public function showUser($id)
     {
         $user = User::findOrFail($id);
         $wishlists = $user->wishlists;

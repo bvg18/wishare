@@ -24,7 +24,9 @@
             </div>
             <ul class="list-group list-group-flush">
                 @foreach($wishlists as $wishlist)
-                    <li class="list-group-item">{{$wishlist->name}}</li>
+                    <li class="list-group-item" >
+                        <a href="{{action('WishlistController@showWishlist', [$wishlist->id]) }}">{{$wishlist->name}}</a>
+                    </li>
                 @endforeach
             </ul>
         </div>
