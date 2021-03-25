@@ -32,14 +32,14 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            <!--Esto es para la presentacion simplemente -->
+            
             @if(Auth::check())
               <ul class="navbar-nav">
               <li class="nav-item">
-                    <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> Mis listas</a>
+                    <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/product/create') }}">Crear Producto</a>
+                    <a class="nav-link" href="{{ url('') }}">New Wishlist</a>
                 </li>
               </ul>
             @endif

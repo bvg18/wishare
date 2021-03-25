@@ -24,5 +24,8 @@ Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar w
 
 Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
 
-Route::get('/product/create', 'ProductController@create');
-Route::post('/product', 'ProductController@store');
+//Route::get('/product/create', 'ProductController@create');
+//Route::post('/product', 'ProductController@store');
+
+Route::get('/product/new/{id}', 'ProductController@formNewProduct');
+Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');

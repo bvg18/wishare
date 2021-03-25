@@ -16,7 +16,8 @@
 
                     <div class="d-flex justify-content-between align-items-baseline">
                         <h1> {{$wishlist->name}} </h1>
-                        <a href="/product/create">Add new product</a>
+                        <!--a href="/product/create">Add new product</a-->
+                        <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
                     </div>
                     
                     <table class="table table-striped">
@@ -36,8 +37,8 @@
                     @foreach($products as $product)
                         <tr>
                             <td>
-                                <!--img src="img"$product->image}} alt="Logo"/-->
-                                <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="300" height="31">
+                                <!--img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="300" height="31"-->
+                                <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible">
                             </td>
                             <td>
                                 {{$product->name}}
