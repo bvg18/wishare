@@ -64,23 +64,14 @@ class ProductController extends Controller
 
         $product = new Product([]);
 
-        $product['name'] = $request->input('name');
-        $product['wishlists_id'] = $idWishlist;
-        $product['description'] = $request->input('description');
-        $product['url'] = $request->input('url');
+        $product->name = $request->input('name');
+        $product->wishlists_id = $idWishlist;
+        $product->description = $request->input('description');
+        $product->url = $request->input('url');
 
         if($request->hasFile('image')){//Imagen del producto
             $image = $request->file('image');
-            //Storage::disk('local')->put('img/products/ ', $image);
-            //$image->move('img/products/', $image->getClientOriginalName());
-            //$extension = $request->image->extension();
-            //$file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
-            //$image->storeAs('/img/products/', $image->getClientOriginalName(), 'public');
-            //Storage::put('file.jpg', $image);
-            $request->file('image')->storeAs(
-                '/public/img', $request->input('name')
-            );
-
+            $image->move('img/products/', $image->getClientOriginalName());
             $product['image'] = $image->getClientOriginalName();
         }
 

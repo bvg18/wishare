@@ -16,7 +16,6 @@
 
                     <div class="d-flex justify-content-between align-items-baseline">
                         <h1> {{$wishlist->name}} </h1>
-                        <!--a href="/product/create">Add new product</a-->
                         <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
                     </div>
                     
@@ -38,7 +37,7 @@
                         <tr>
                             <td>
                                 <!--img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="300" height="31"-->
-                                <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible">
+                                <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="200" height="200">
                             </td>
                             <td>
                                 {{$product->name}}
