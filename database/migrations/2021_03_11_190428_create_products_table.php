@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             //$table->float('price');
             $table->string('description');
             $table->string('url');//->nullable($value = false);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('wishlists_id');
             $table->foreign('wishlists_id')->references('id')->on('wishlists')->onUpdate('cascade')->onDelete('no action');
             //$table->string('category'); hacer modelo

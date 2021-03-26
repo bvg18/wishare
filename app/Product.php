@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Wishlist;
 
 class Product extends Model
 {
@@ -19,6 +20,6 @@ class Product extends Model
     ];
 
     public function wishlist() {
-        return belongsTo('App\Wislist', 'wishlists_id');
+        return belongsTo('Wislist', 'wishlists_id');
     }
 }
