@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Wishlist;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class WishlistsTableSeeder extends Seeder
 {

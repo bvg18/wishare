@@ -1,9 +1,12 @@
 <?php
 
+
 use Illuminate\Database\Seeder;
 
 use App\Product;
 use App\Wishlist;
+use App\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -18,6 +21,7 @@ class ProductsTableSeeder extends Seeder
         DB::table('products')->delete();
 
         $w=Wishlist::find(1);
+        $c=Category::find(1);
 
         //Insertar filas en la tabla users
         $product = Product::create(
@@ -27,6 +31,7 @@ class ProductsTableSeeder extends Seeder
                 'url' => 'https://www.amazon.es/Pentel-EnerGel-X-Bol%C3%ADgrafo-retr%C3%A1ctil-marino/dp/B07SM86Q5H/',
                 'image' => 'boli.jpg',
                 'wishlists_id' => $w->id,
+                'categories_id' => $c->id,
             ]
         );
 
@@ -39,6 +44,7 @@ class ProductsTableSeeder extends Seeder
                 'url' => 'https://www.amazon.es/Pentel-EnerGel-X-Bol%C3%ADgrafo-retr%C3%A1ctil-marino/dp/B07SM86Q5H/',
                 'image' => 'boli.jpg',
                 'wishlists_id' => $w->id,
+                'categories_id' => $c->id,
             ]
         );
 
