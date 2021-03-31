@@ -54,6 +54,27 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+
+                    <div class="col-md-6">
+                        <!--input id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" required autocomplete="category" autofocus-->
+                        
+                        <select class="form-control" id="category" name="category" type="">
+                            @foreach($categories as $category)
+                            <option value="{{ $category-> id }}"> {{ $category-> name }}</option>
+                            @endforeach
+                            </select>
+                            
+
+                        @error('category')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="image" class="col-md-4 col-form-label text-md-right">Product Image</label>
                     <div class="col-md-6 ">
                         <input type="file" name="image" accept="image/png, image/jpg" value="{{old('image')}}">

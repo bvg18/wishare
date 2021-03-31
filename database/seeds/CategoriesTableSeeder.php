@@ -21,6 +21,15 @@ class CategoriesTableSeeder extends Seeder
 
         $c = new Category(
             [
+                'name' => 'Default',
+                'description' => 'Default category'
+            ]
+        );
+        $c -> save();
+        
+        
+        $c = new Category(
+            [
                 'name' => 'Papeleria',
                 'description' => 'papel y otros objetos de escritorio'
             ]
