@@ -7,6 +7,7 @@ use App\Product;
 use App\Wishlist;
 use App\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -23,8 +24,9 @@ class ProductsTableSeeder extends Seeder
         $w=Wishlist::find(1);
         $c=Category::find(1);
 
+
         //Insertar filas en la tabla users
-        $product = Product::create(
+        $product = new Product(
             [
                 'name' => 'Boli Pentel Azul',
                 'description' => 'Bolígrafo Azul Pentel-EnerGel-X',
@@ -37,7 +39,7 @@ class ProductsTableSeeder extends Seeder
 
         $product -> save();
 
-        $product = Product::create(
+        $product = new Product(
             [
                 'name' => 'Boli Pentel Rojo',
                 'description' => 'Bolígrafo Rojo Pentel-EnerGel-X',

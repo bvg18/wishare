@@ -21,13 +21,13 @@ class WishlistsTableSeeder extends Seeder
         //Insertar filas en la tabla users
         $user=User::find(2);
                 
-        $w = Wishlist::create(
+        $w = new Wishlist (
             [
                 'name' => 'Mis Deseos',
                 'users_id' => $user->id,
             ]
         );
-        $w = Wishlist::create(
+        $w = new Wishlist (
             [
                 'name' => 'Tecnología',
                 'users_id' => $user->id,

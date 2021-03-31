@@ -19,7 +19,7 @@ class CategoriesTableSeeder extends Seeder
         //Borrar datos de la tabla products
         DB::table('categories')->delete();
 
-        $c = Category::create(
+        $c = new Category(
             [
                 'name' => 'Papeleria',
                 'description' => 'papel y otros objetos de escritorio'
