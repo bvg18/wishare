@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Wishlist;
 
 class Product extends Model
 {
@@ -20,6 +19,10 @@ class Product extends Model
     ];
 
     public function wishlist() {
-        return belongsTo('Wislist', 'wishlists_id');
+        return $this->belongsTo('App\Wishlist', 'wishlists_id');
+    }
+
+    public function category() {
+        return $this->belongsTo('App\Category', 'categories_id');
     }
 }

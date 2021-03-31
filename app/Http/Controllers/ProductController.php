@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use App\Wishlist;
 use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -14,8 +15,9 @@ class ProductController extends Controller
     public function formNewProduct($idWishlist) 
     {
         $wishlist = Wishlist::findOrFail($idWishlist);
+        $categories = Category::All();
 
-        return view('products/create', ['wishlist' => $wishlist]);
+        return view('products/create', ['wishlist' => $wishlist, 'categories' => $categories]);
     }
 
 
@@ -32,6 +34,7 @@ class ProductController extends Controller
         $product->wishlists_id = $idWishlist;
         $product->description = $request->input('description');
         $product->url = $request->input('url');
+        $product->categories_id = $request->input('category');
 
         if($request->hasFile('image')){//Imagen del producto
             $image = $request->file('image');

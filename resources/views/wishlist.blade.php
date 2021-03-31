@@ -21,16 +21,11 @@
                     
                     <table class="table table-striped">
                         <tr>
-                            <th>Imagen</th>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Descripción
-                            </th>
-                            <th>
-                                URL
-                            </th>
+                            <th>Image</th>
+                            <th>Name </th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>URL</th>
                             
                         </tr>
                     @foreach($products as $product)
@@ -43,6 +38,14 @@
                                 {{$product->name}}
                             <td>
                                 {{$product->description}}
+                            </td>
+                            <td>
+                                @foreach($categories as $category)
+                                    @if($category->id == $product->categories_id)
+                                        {{$category->name}}
+                                        @break
+                                    @endif
+                                @endforeach
                             </td>
                             <td>
                                 <a href="{{$product->url}}">Ver</a>

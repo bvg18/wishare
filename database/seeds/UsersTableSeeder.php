@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,7 +19,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         //Insertar filas en la tabla users
-        $user1 = User::create(
+        $user1 = new User(
             [
                 'name' => 'admin',
                 'email' => 'admin@wishare.es',
@@ -26,7 +29,7 @@ class UsersTableSeeder extends Seeder
 
         $user1 -> save();
 
-        $user2= User::create(
+        $user2= new User(
             [
                 'name' => 'usuario',
                 'email' => 'usuario@wishare.es',

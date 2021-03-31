@@ -22,7 +22,8 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->unsignedBigInteger('wishlists_id');
             $table->foreign('wishlists_id')->references('id')->on('wishlists')->onUpdate('cascade')->onDelete('no action');
-            //$table->string('category'); hacer modelo
+            $table->unsignedBigInteger('categories_id');
+            $table->foreign('categories_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('no action');
             $table->timestamps();
         });
     }

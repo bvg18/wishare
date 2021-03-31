@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Wishlist;
 use App\Product;
 use App\User;
+use App\Category;
 
 class WishlistController extends Controller
 {
@@ -27,7 +28,9 @@ class WishlistController extends Controller
 
         $products = $wishlist->products;
 
-        return view('wishlist', ['wishlist' => $wishlist, 'products' => $products]);
+        $categories = Category::All();
+
+        return view('wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories]);
     }
 
     public function listWishlist($userId) {
