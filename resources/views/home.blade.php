@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    ¡Bienvenido a Wishare!
+                    ¡Welcome to Wishare!
                     <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}">My Wishlists</a>
                     
 
