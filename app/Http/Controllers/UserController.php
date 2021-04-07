@@ -17,19 +17,23 @@ class UserController extends Controller
 
     public function editUser($id)
     {
+        $user = User::find($id);
+        $this->authorize('update', $user); // Si no se accede al ID del usuario -> error 403
         $user = User::findOrFail($id);
         return view('users/edit', ['user' => $user]);
     }
 
     public function update($id)
     {
+        $user = User::find($id);
+        $this->authorize('update', $user); // Si no se accede al ID del usuario -> error 403
         $data = request()->validate([
             'name' => 'required', // No permitimos borrar el nombre
             'description' => '',
             'image' => ''
         ]);
 
-        $user = User::find($id);
+        
         $desc = $data['description'];
         $user->update($data);
         $user->description = $desc;
