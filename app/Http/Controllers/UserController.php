@@ -20,4 +20,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('users/edit', ['user' => $user]);
     }
+
+    public function update($id)
+    {
+        
+    }
 }

@@ -19,6 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/user/{id}', 'UserController@showUser');
 Route::get('/user/{id}/edit', 'UserController@editUser')->name('user.edit'); // El nombre aun no se usa?
+Route::patch('/user/{id}', 'UserController@update')->name('user.update');
 
 Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
 Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
