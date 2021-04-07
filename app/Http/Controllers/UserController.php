@@ -23,6 +23,15 @@ class UserController extends Controller
 
     public function update($id)
     {
-        
+        $data = request()->validate([
+            'name' => 'required', // No permitimos borrar el nombre
+            'description' => '',
+            'image' => '',
+        ]);
+
+        $user = User::find($id);
+        $user->update($data);
+
+        return redirect("/user/{$user->id}");
     }
 }
