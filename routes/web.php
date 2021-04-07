@@ -11,20 +11,39 @@
 |
 */
 
+// Parte Privada
+// todas las URLs aqui seran solo accesibles una vez iniciado sesion y dependiendo de su rol
+
+Route::middleware('auth')->group (function () {
+
+    // Parte privada para un usuario normal (basico)
+    Route::get('/user/{id}', 'UserController@showUser');
+    Route::get('/user/{id}/edit', 'UserController@editUser')->name('user.edit'); // El nombre aun no se usa?
+    Route::patch('/user/{id}', 'UserController@update')->name('user.update');
+
+    Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
+    Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
+    Route::get('/createwishlist', 'WishlistController@formNewWishlist');//Muestra el formulario de nueva lista
+    Route::post('/createwishlist', 'WishlistController@addNewWishlist');//Crea la wishlist con el nombre indicado
+
+    Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
+    Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
+
+    //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
+});
+
+Route::middleware('admin')->group (function () {
+
+    // Parte privada para un admin (perfil administrador) 
+    // "un administrador utilizara el correo admin@wishare.es para iniciar sesion"
+
+});
+
+// Parte Publica 
+// todas las URLs aqui seran accesibles por cualquier rol en cualquier momento
+
 Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
-
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/user/{id}', 'UserController@showUser');
-Route::get('/user/{id}/edit', 'UserController@editUser')->name('user.edit'); // El nombre aun no se usa?
-Route::patch('/user/{id}', 'UserController@update')->name('user.update');
 
-Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
-Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
-Route::get('/createwishlist', 'WishlistController@formNewWishlist');//Muestra el formulario de nueva lista
-Route::post('/createwishlist', 'WishlistController@addNewWishlist');//Crea la wishlist con el nombre indicado
-
-Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
-Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
