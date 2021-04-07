@@ -15,6 +15,9 @@
             <div><strong>72</strong> following</div>
         </div>
     </div>
+    <div class="row">
+        <p>{{ $user->description }}</p>
+    </div>
     <div class="row" style="height: 1rem">
     </div>
     <div class="row">

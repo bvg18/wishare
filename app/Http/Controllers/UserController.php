@@ -26,11 +26,14 @@ class UserController extends Controller
         $data = request()->validate([
             'name' => 'required', // No permitimos borrar el nombre
             'description' => '',
-            'image' => '',
+            'image' => ''
         ]);
 
         $user = User::find($id);
+        $desc = $data['description'];
         $user->update($data);
+        $user->description = $desc;
+        $user->save();
 
         return redirect("/user/{$user->id}");
     }
