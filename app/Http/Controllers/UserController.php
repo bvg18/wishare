@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -35,10 +36,21 @@ class UserController extends Controller
 
         
         $desc = $data['description'];
-        $user->update($data);
         $user->description = $desc;
         $user->save();
 
+        if(request('image')){//Imagen del producto
+            $imagePath = request('image')->store('profile', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+            $image->save();
+            $data = array_merge(
+                $data,
+                ['image' => $imagePath]);
+        }
+
+        $user->update($data);
+        
         return redirect("/user/{$user->id}");
     }
 }
