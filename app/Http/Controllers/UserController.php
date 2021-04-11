@@ -19,4 +19,11 @@ class UserController extends Controller
         return view('user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
         'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
     }
+
+    public function followUser($id){
+        $user = User::find($id);
+        $user->follows()->attach(auth()->user()->id);
+
+        return redirect()->action('UserController@showUser',$id);
+    }
 }
