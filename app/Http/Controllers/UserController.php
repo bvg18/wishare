@@ -12,6 +12,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $wishlists = $user->wishlists;
         $count = $wishlists->count();
-        return view('user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
+        $followers= $user->followers;
+        $follows=$user->follows;
+        $followersC=$followers->count();
+        $followsC=$follows->count();
+        return view('user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
+        'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
     }
 }

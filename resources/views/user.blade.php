@@ -11,8 +11,8 @@
                 <h1>{{$user->name}}</h1>
             </div>
             <div><strong>{{$count}}</strong> wishlists</div>
-            <div><strong>158</strong> followers</div>
-            <div><strong>72</strong> following</div>
+            <div><strong>{{$followersC}}</strong> followers</div>
+            <div><strong>{{$followsC}}</strong> following</div>
         </div>
     </div>
     <div class="row" style="height: 1rem">
