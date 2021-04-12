@@ -42,9 +42,6 @@ class ProductController extends Controller
             $product['image'] = $image->getClientOriginalName();
         }
 
-        //$categoria = Categoria::find($request->input('categoria'));
-        //$pieza->categoria()->associate($categoria);
-        
         $product->save();
         
         return redirect()->action('WishlistController@showWishlist', [$idWishlist]);

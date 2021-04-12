@@ -39,7 +39,7 @@
                     <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('') }}">New Wishlist</a>
+                    <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
                 </li>
               </ul>
             @endif

@@ -19,8 +19,12 @@ Route::middleware('auth')->group (function () {
     // Parte privada para un usuario normal (basico)
 
     Route::get('/user/{id}', 'UserController@showUser');
+  
     Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
     Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
+    Route::get('/createwishlist', 'WishlistController@formNewWishlist');//Muestra el formulario de nueva lista
+    Route::post('/createwishlist', 'WishlistController@addNewWishlist');//Crea la wishlist con el nombre indicado
+  
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
 
@@ -34,8 +38,6 @@ Route::middleware('admin')->group (function () {
 
     
 });
-
-
 
 // Parte Publica 
 // todas las URLs aqui seran accesibles por cualquier rol en cualquier momento
