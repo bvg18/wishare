@@ -41,6 +41,16 @@ class UsersTableSeeder extends Seeder
 
         $user2->follows()->attach($user1->id);
 
+        $user = new User(
+            [
+                'name' => 'testname',
+                'email' => 'testemail@testemail.com',
+                'password' => Hash::make('test'),
+            ]
+        );
+
+        $user -> save();
+
         
     }
 }
