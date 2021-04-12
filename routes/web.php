@@ -27,6 +27,7 @@ Route::middleware('auth')->group (function () {
   
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
+    Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
 
     //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
 });

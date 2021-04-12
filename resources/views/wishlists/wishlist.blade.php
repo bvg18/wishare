@@ -26,6 +26,7 @@
                             <th>Description</th>
                             <th>Category</th>
                             <th>URL</th>
+                            <th>   </th> <<!-- para borrar -->
                             
                         </tr>
                     @foreach($products as $product)
@@ -49,6 +50,12 @@
                             </td>
                             <td>
                                 <a href="{{$product->url}}">Ver</a>
+                            </td>
+                            <td>
+                                <form action="{{action('ProductController@deleteProductOfWishList', [$wishlist->id, $product->id]) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
