@@ -39,7 +39,7 @@
                     <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('') }}">New Wishlist</a>
+                    <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
                 </li>
               </ul>
             @endif
@@ -73,12 +73,18 @@
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{action('UserController@showUser', [Auth::user()->id]) }}">
-                                        {{ __('Ver cuenta') }}
+                                        {{ __('Account') }}
                                     </a>
 
                                     <form id="cuenta-form" action="{{ url('user/1') }}" method="GET" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{action('UserController@editUser', [Auth::user()->id]) }}">
+                                        {{ __('Settings') }}
+                                    </a>
+
+                                    
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
