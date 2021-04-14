@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                 </div>
-
+<!--
                 <div class="form-group row">
                     <label for="image" class="col-md-4 col-form-label text-md-right">Profile Image</label>
                     <div class="col-md-6 ">
@@ -70,7 +70,7 @@
                         @enderror 
                     </div>
                 </div>
-
+            No funciona bien. Pendiente-->
                 <div class="row">
                     <div class="col-md-4 ml-3"></div>
                     <button class="btn btn-primary">Save Profile</button>
