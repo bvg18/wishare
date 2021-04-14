@@ -11,9 +11,12 @@
             <div>
                 <h1>{{$user->name}}</h1>
             </div>
-            <div><strong>{{$count}}</strong> wishlists</div>
-            <div><strong>158</strong> followers</div>
-            <div><strong>72</strong> following</div>
+            <div><strong>{{$count}}</strong> Wishlists</div>
+            <div><strong>{{$followersC}}</strong> Followers</div>
+            <div><strong>{{$followsC}}</strong> Following</div>
+            <a class="btn btn-info btn-sm action-follow" href="{{action('UserController@followUser', [$user->id]) }}"><strong>
+                Follow
+                </strong></a>
         </div>
     </div>
     <div class="row">

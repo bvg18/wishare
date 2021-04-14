@@ -13,6 +13,19 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $wishlists = $user->wishlists;
         $count = $wishlists->count();
+        $followers= $user->followers;
+        $follows=$user->follows;
+        $followersC=$followers->count();
+        $followsC=$follows->count();
+        return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
+        'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
+    }
+
+    public function followUser($id){
+        $user = User::find($id);
+        $user->follows()->attach(auth()->user()->id);
+
+        return back()->withSuccess("Seguiste a {$user->name}");
         return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
     }
 
