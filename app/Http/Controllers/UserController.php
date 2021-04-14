@@ -17,7 +17,7 @@ class UserController extends Controller
         $follows=$user->follows;
         $followersC=$followers->count();
         $followsC=$follows->count();
-        return view('user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
+        return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
         'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
     }
 
