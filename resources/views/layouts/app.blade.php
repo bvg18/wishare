@@ -86,12 +86,18 @@
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{action('UserController@showUser', [Auth::user()->id]) }}">
-                                        {{ __('Ver cuenta') }}
+                                        {{ __('Account') }}
                                     </a>
 
                                     <form id="cuenta-form" action="{{ url('user/1') }}" method="GET" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{action('UserController@editUser', [Auth::user()->id]) }}">
+                                        {{ __('Settings') }}
+                                    </a>
+
+                                    
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
