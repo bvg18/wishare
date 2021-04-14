@@ -35,5 +35,53 @@ class CategoriesTableSeeder extends Seeder
             ]
         );
         $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Electronics',
+                'description' => 'different consumer electronics'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Jewelry',
+                'description' => 'rings, bracelets, necklaces'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Videogames',
+                'description' => 'Games for consoles'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Board games',
+                'description' => 'Tabletop games for 2+ players'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Software',
+                'description' => 'Computer software licenses'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Fitness',
+                'description' => 'Sports equipment'
+            ]
+        );
+        $c -> save();
     }
 }
