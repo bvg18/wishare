@@ -24,6 +24,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->follows()->attach(auth()->user()->id);
 
-        return redirect()->action('UserController@showUser',$id);
+        return back()->withSuccess("Seguiste a {$user->name}");
     }
 }
