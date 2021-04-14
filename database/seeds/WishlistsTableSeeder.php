@@ -28,10 +28,29 @@ class WishlistsTableSeeder extends Seeder
             ]
         );
         $w -> save();
+
         $w = new Wishlist (
             [
                 'name' => 'Tecnología',
                 'users_id' => $user->id,
+            ]
+        );
+        $w -> save();
+
+        $user2=User::where('name','testname')->first();
+        $w = new Wishlist (
+            [
+                'name' => 'testwishlist1',
+                'users_id' => $user2->id,
+            ]
+        );
+        $w -> save();
+
+        $user2=User::where('name','testname')->first();
+        $w = new Wishlist (
+            [
+                'name' => 'testwishlist2',
+                'users_id' => $user2->id,
             ]
         );
         $w -> save();
