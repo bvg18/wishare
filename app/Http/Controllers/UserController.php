@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -29,41 +30,31 @@ class UserController extends Controller
         return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
     }
 
-    public function editUser($id)
+    public function formUpdate(/*$id*/)
     {
-        $user = User::find($id);
-        $this->authorize('update', $user); // Si no se accede al ID del usuario -> error 403
-        $user = User::findOrFail($id);
-        return view('users/edit', ['user' => $user]);
+        $user = Auth::user();
+        return view('users/formUpdate', ['user' => $user]);
     }
 
-    public function update($id)
+    
+    public function updateUser($idUser, Request $request)
     {
-        $user = User::find($id);
-        $this->authorize('update', $user); // Si no se accede al ID del usuario -> error 403
-        $data = request()->validate([
-            'name' => 'required', // No permitimos borrar el nombre
-            'description' => '',
-            'image' => ''
+        $user = User::findOrFail($idUser);
+        $request->validate([
+            'name' => 'required|min:4|max:30'//, // No permitimos borrar el nombre
+            //'description' => '',
+            //'image' => ''
         ]);
-
-        
-        $desc = $data['description'];
-        $user->description = $desc;
+        $user->name = $request->input('name');
+        $user->description = $request->input('description');
+        if($request->hasFile('image')){//Imagen del producto
+            $image = $request->file('image');
+            $image->move('img/users/', $image->getClientOriginalName());
+            $user['image'] = $image->getClientOriginalName();
+        }
         $user->save();
 
-        if(request('image')){//Imagen del producto
-            $imagePath = request('image')->store('profile', 'public');
-
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
-            $image->save();
-            $data = array_merge(
-                $data,
-                ['image' => $imagePath]);
-        }
-
-        $user->update($data);
-        
-        return redirect("/user/{$user->id}");
+        return redirect()->action('UserController@showUser', [$idUser]);
     }
+
 }

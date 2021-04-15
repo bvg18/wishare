@@ -48,7 +48,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="{{$product->url}}">Ver</a>
+                                <a href="{{$product->url}}" target="_blank">Ver</a>
                             </td>
                         </tr>
                     @endforeach

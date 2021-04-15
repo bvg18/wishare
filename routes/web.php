@@ -18,8 +18,9 @@ Route::middleware('auth')->group (function () {
 
     // Parte privada para un usuario normal (basico)
     Route::get('/user/{id}', 'UserController@showUser');
-    Route::get('/user/{id}/edit', 'UserController@editUser')->name('user.edit'); // El nombre aun no se usa?
-    Route::patch('/user/{id}', 'UserController@update')->name('user.update');
+    
+    Route::get('/profile/update', 'UserController@formUpdate');
+    Route::post('/profile/{id}/update', 'UserController@updateUser');
 
     Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
     Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
