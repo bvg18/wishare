@@ -24,7 +24,9 @@ class UserController extends Controller
 
     public function followUser($id){
         $user = User::find($id);
-        $user->follows()->attach(auth()->user()->id);
+        
+        //$user->follows()->attach(auth()->user()->id);
+        $user->follows()->attach(Auth::id());
 
         return back()->withSuccess("Seguiste a {$user->name}");
         return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
