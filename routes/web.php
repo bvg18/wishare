@@ -18,6 +18,7 @@ Route::middleware('auth')->group (function () {
 
     // Parte privada para un usuario normal (basico)
     Route::get('/user/{id}', 'UserController@showUser');
+    Route::post('/user/{id}', 'UserController@followUser');//Para seguir a un usuario
     
     Route::get('/profile/update', 'UserController@formUpdate');
     Route::post('/profile/{id}/update', 'UserController@updateUser');
@@ -29,8 +30,8 @@ Route::middleware('auth')->group (function () {
 
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
-    Route::post('/user/{id}', 'UserController@followUser');//Para seguir a un usuario
-
+    Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
+    
     //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
 });
 
