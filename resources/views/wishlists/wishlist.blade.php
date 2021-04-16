@@ -49,7 +49,7 @@
                                 @endforeach
                             </td>
                             <td>
-                                <a href="{{$product->url}}">Ver</a>
+                                <a href="{{$product->url}}" target="_blank">Ver</a>
                             </td>
                             <td>
                                 <form action="{{action('ProductController@deleteProductOfWishList', [$wishlist->id, $product->id]) }}" method="POST" enctype="multipart/form-data">
