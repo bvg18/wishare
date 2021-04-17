@@ -22,14 +22,33 @@ class UserController extends Controller
         'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
     }
 
-    public function followUser($id){
+    public function followUser($id)
+    {
         $user = User::find($id);
-        
+        $userAuth = Auth::user();
         //$user->follows()->attach(auth()->user()->id);
-        $user->follows()->attach(Auth::id());
+        //$user->follows()->attach(Auth::id());
+        $userAuth->follows()->attach($user->id);
+
 
         return back()->withSuccess("Seguiste a {$user->name}");
         return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
+    }
+
+    public function showFollowing($idUser)
+    {
+        $user = User::findOrFail($idUser);
+        $following = $user->follows;
+
+        return view('users/following', ['user' => $user, 'following'=>$following]);
+    }
+
+    public function showFollowers($idUser)
+    {
+        $user = User::findOrFail($idUser);
+        $followers= $user->followers;
+
+        return view('users/followers', ['user' => $user, 'followers'=>$followers]);
     }
 
     public function formUpdate(/*$id*/)

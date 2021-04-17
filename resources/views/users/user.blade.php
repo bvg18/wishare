@@ -27,25 +27,36 @@
             <h1 class="text-center">{{$user->name}}</h1>
             <p class="text-center">
                 <strong>{{$count}}</strong> Wishlists <br> 
-                <strong>{{$followersC}}</strong> followers<br>
-                <strong>{{$followsC}}</strong> following
+                
+                <strong>{{$followersC}}</strong>
+                <a href="{{action('UserController@showFollowers', [$user->id])}}"> followers</a><br>
+                
+                <strong>{{$followsC}}</strong>
+                <a href="{{action('UserController@showFollowing', [$user->id])}}"> following</a>
             </p>
         </div>
         <div class="col-10 d-none d-xl-block">
             <h1>{{$user->name}}</h1>
             <p>
                 <strong>{{$count}}</strong> Wishlists <br> 
-                <strong>{{$followersC}}</strong> followers<br>
-                <strong>{{$followsC}}</strong> following
+                <strong>{{$followersC}}</strong>
+                <a href="{{action('UserController@showFollowers', [$user->id])}}"> followers</a><br>
+                <strong>{{$followsC}}</strong>
+                <a href="{{action('UserController@showFollowing', [$user->id])}}"> following</a>
             </p>
             @if($user->id == Auth::user()->id)
                 <a class="btn btn-info btn-sm action-follow" href="{{action('UserController@formUpdate')}}">
                     <strong> Settings </strong>
                 </a>
             @else
-                <a class="btn btn-info btn-sm action-follow" href="{{action('UserController@followUser', [$user->id]) }}">
+                <!--a class="btn btn-info btn-sm action-follow" href="{{action('UserController@followUser', [$user->id]) }}">
                     <strong> Follow </strong>
-                </a>
+                </a-->
+                <form action="{{action('UserController@followUser', [$user->id])}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <button class="btn btn-info btn-sm action-follow">Follow</button>
+                    
+                
             @endif
         </div>
     </div>

@@ -19,6 +19,8 @@ Route::middleware('auth')->group (function () {
     // Parte privada para un usuario normal (basico)
     Route::get('/user/{id}', 'UserController@showUser');
     Route::post('/user/{id}', 'UserController@followUser');//Para seguir a un usuario
+    Route::get('/user/{id}/following', 'UserController@showFollowing');
+    Route::get('/user/{id}/followers', 'UserController@showFollowers');
     
     Route::get('/profile/update', 'UserController@formUpdate');
     Route::post('/profile/{id}/update', 'UserController@updateUser');
