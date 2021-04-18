@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserController extends Controller
 {
@@ -18,21 +19,31 @@ class UserController extends Controller
         $follows=$user->follows;
         $followersC=$followers->count();
         $followsC=$follows->count();
+        $myUser = ($user->id == Auth::user()->id);
+        $followed = Auth::user()->follows->contains($user);
         return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count,'followers'=>$followers,
-        'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC]);
+        'follows'=>$follows,'followersC'=>$followersC,'followsC'=>$followsC, 'myUser' => $myUser, 'followed' => $followed]);
     }
 
-    public function followUser($id)
+    public function followUser($idUser)
     {
-        $user = User::find($id);
         $userAuth = Auth::user();
-        //$user->follows()->attach(auth()->user()->id);
-        //$user->follows()->attach(Auth::id());
-        $userAuth->follows()->attach($user->id);
+        $userToFollow = User::findOrFail($idUser);
+        $userAuth->follows()->attach($userToFollow->id);
 
 
-        return back()->withSuccess("Seguiste a {$user->name}");
-        return view('users/user', ['user' => $user, 'wishlists' => $wishlists, 'count' => $count]);
+        //return back()->withSuccess("Seguiste a {$userToFollow->name}");
+        //return view('users/user', ['user' => $userToFollow, 'wishlists' => $wishlists, 'count' => $count]);
+        return redirect()->action('UserController@showUser', [$idUser]);
+    }
+
+    public function unfollowUser($idUser)
+    {
+        $userAuth = Auth::user();
+        $userToUnfollow = User::findOrFail($idUser);
+        $userAuth->follows()->detach($userToUnfollow->id);
+
+        return redirect()->action('UserController@showUser', [$idUser]);
     }
 
     public function showFollowing($idUser)

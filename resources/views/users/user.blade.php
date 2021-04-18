@@ -44,19 +44,18 @@
                 <strong>{{$followsC}}</strong>
                 <a href="{{action('UserController@showFollowing', [$user->id])}}"> following</a>
             </p>
-            @if($user->id == Auth::user()->id)
+            @if($myUser)
                 <a class="btn btn-info btn-sm action-follow" href="{{action('UserController@formUpdate')}}">
                     <strong> Settings </strong>
                 </a>
+            @elseif($followed)
+                <form action="{{action('UserController@unfollowUser', [$user->id])}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                    <button class="btn btn-warning btn-sm action-follow">Unfollow</button>
             @else
-                <!--a class="btn btn-info btn-sm action-follow" href="{{action('UserController@followUser', [$user->id]) }}">
-                    <strong> Follow </strong>
-                </a-->
                 <form action="{{action('UserController@followUser', [$user->id])}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <button class="btn btn-info btn-sm action-follow">Follow</button>
-                    
-                
+                @csrf
+                    <button class="btn btn-info btn-sm action-unfollow">Follow</button>
             @endif
         </div>
     </div>

@@ -26,7 +26,7 @@
                             <th>Description</th>
                             <th>Category</th>
                             <th>URL</th>
-                            <th>   </th> <<!-- para borrar -->
+                            <th>   </th> <!-- para el boton de borrar -->
                             
                         </tr>
                     @foreach($products as $product)
