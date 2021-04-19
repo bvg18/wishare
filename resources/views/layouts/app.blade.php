@@ -93,7 +93,7 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href="{{action('UserController@editUser', [Auth::user()->id]) }}">
+                                    <a class="dropdown-item" href="{{action('UserController@formUpdate')}}">
                                         {{ __('Settings') }}
                                     </a>
 

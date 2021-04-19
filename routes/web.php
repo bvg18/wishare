@@ -17,9 +17,14 @@
 Route::middleware('auth')->group (function () {
 
     // Parte privada para un usuario normal (basico)
-    Route::get('/user/{id}', 'UserController@showUser');
-    Route::get('/user/{id}/edit', 'UserController@editUser')->name('user.edit'); // El nombre aun no se usa?
-    Route::patch('/user/{id}', 'UserController@update')->name('user.update');
+    Route::get('/user/{id}', 'UserController@showUser');//Muestra perfil de un usuario
+    Route::post('/user/follow/{id}', 'UserController@followUser');//Para seguir a un usuario
+    Route::post('/user/unfollow/{id}', 'UserController@unfollowUser');//Para dejar de seguir seguir a un usuario
+    Route::get('/user/{id}/following', 'UserController@showFollowing');//Lista usuarios que sigue
+    Route::get('/user/{id}/followers', 'UserController@showFollowers');//Lista usuarios que le siguen
+    
+    Route::get('/profile/update', 'UserController@formUpdate');
+    Route::post('/profile/{id}/update', 'UserController@updateUser');
 
     Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
     Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
@@ -28,8 +33,8 @@ Route::middleware('auth')->group (function () {
 
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
-    Route::post('/user/{id}', 'UserController@followUser');//Para seguir a un usuario
-
+    Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
+    
     //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
 });
 

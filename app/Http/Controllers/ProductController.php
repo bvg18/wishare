@@ -46,4 +46,11 @@ class ProductController extends Controller
         
         return redirect()->action('WishlistController@showWishlist', [$idWishlist]);
     }
+
+    public function deleteProductOfWishList($idWishlist, $idProduct, Request $request) {
+        $wishlist = Wishlist::findOrFail($idWishlist);
+        $product = Product::findOrFail($idProduct);
+        $product->delete();
+        return redirect()->action('WishlistController@showWishlist', [$idWishlist]);       
+    }
 }

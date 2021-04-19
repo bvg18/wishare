@@ -34,6 +34,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'usuario',
                 'email' => 'usuario@wishare.es',
                 'password' => Hash::make('usuario'),
+                'image' => 'jobs.webp'
             ]
         );
 
