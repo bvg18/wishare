@@ -83,5 +83,21 @@ class CategoriesTableSeeder extends Seeder
             ]
         );
         $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Home appliance',
+                'description' => 'Home assisting and improvement machinery'
+            ]
+        );
+        $c -> save();
+
+        $c = new Category(
+            [
+                'name' => 'Toy',
+                'description' => 'Different children toys'
+            ]
+        );
+        $c -> save();
     }
 }

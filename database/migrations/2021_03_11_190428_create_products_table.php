@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');//->nullable($value = false);
             //$table->float('price');
-            $table->string('description');
-            $table->string('url');//->nullable($value = false);
+            $table->text('description')->nullable();;
+            $table->text('url');//->nullable($value = false);
             $table->string('image')->nullable();
             $table->unsignedBigInteger('wishlists_id');
             $table->foreign('wishlists_id')->references('id')->on('wishlists')->onUpdate('cascade')->onDelete('no action');
