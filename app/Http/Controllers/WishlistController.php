@@ -17,7 +17,9 @@ class WishlistController extends Controller
         
         $wishlist = Wishlist::find($id);
 
-        $products = $wishlist->products;
+        //$products = $wishlist->products;
+
+        $products = Product::where('wishlists_id', $id)->paginate(10);
 
         $categories = Category::All();
 
@@ -27,7 +29,8 @@ class WishlistController extends Controller
     public function listWishlist($userId) {
         
         $user = User::findOrFail($userId);
-        $wishlists = $user->wishlists;
+        //$wishlists = $user->wishlists;
+        $wishlists = Wishlist::where('users_id', $userId)->paginate(10);
 
         return view('wishlists/wishlists', ['user' => $user, 'wishlists' => $wishlists]);
     }
