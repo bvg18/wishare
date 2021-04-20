@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Wishlist</div>
 
@@ -27,7 +27,7 @@
                             <th>Description</th>
                             <th>Category</th>
                             <th>URL</th>
-                            <th>   </th> <!-- para el boton de borrar -->
+                            <th>Action</th> <!-- para el boton de borrar -->
                             
                         </tr>
                     @foreach($products as $product)
