@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-
+    </form>
 </div>
 @endsection
 <div >

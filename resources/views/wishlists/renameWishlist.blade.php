@@ -2,33 +2,31 @@
 
 @section('content')
 <div class="container">
-    <form action="{{action('WishlistController@addNewWishlist')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{action('WishlistController@renameWishlist')}}" method="POST" enctype="multipart/form-data">
    @csrf
    <div class="row">
             <div class="col-8 offset2">
 
                 <div class="row">
-                    <h1>Create New Wishlist</h1>
+                    <h1>Edit Wishlist</h1>
                 </div>
                 
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        <input id="name" class="form-control" type="text" name="name" autofocus>
                     </div>
                 </div>
+                <div>
+                    <input type="hidden" name="wishlist_id" value = {{$wishlist_id}}>
+                </div>
+
 
                 
                 <div class="row">
                     <div class="col-md-4 ml-3"></div>
-                    <button class="btn btn-primary">Create new wishlist</button>
+                    <button class="btn btn-primary">update wishlist</button>
                 </div>
             </div>
         </div>

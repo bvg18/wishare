@@ -16,6 +16,7 @@
 
                     <div class="d-flex justify-content-between align-items-baseline">
                         <h1> {{$wishlist->name}} </h1>
+                        <a href="{{action('WishlistController@formRenameWishlist', [$wishlist->id]) }}"> rename </a>
                         <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
                     </div>
                     
