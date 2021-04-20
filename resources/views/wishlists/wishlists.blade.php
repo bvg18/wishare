@@ -29,6 +29,7 @@
                             </li>
                             
                         @endforeach
+                        {{$wishlists->links()}}
                     @endif
                     </ul>
                     </div>
