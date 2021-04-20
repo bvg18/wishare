@@ -57,4 +57,26 @@ class WishlistController extends Controller
         return redirect()->action('WishlistController@listWishlist', [$userId]);
     }
 
+    public function formRenameWishlist($id)
+    {
+        return view('wishlists/renameWishlist', ['wishlist_id' => $id]);
+    }
+
+    public function renameWishlist(Request $request) {
+        $name = $request->input('name');
+
+        $id = $request->input('wishlist_id');
+        $wishlist = Wishlist::find($id);
+        if($name!=null)
+        {
+            $wishlist->name=$name;
+        }
+        $wishlist->save();
+        $products = Product::where('wishlists_id', $id)->paginate(10);
+
+        $categories = Category::All();
+
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories]);
+    }
+
 }
