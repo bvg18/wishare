@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{action('WishlistController@renameWishlist')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{action('WishlistController@editWishlist')}}" method="POST" enctype="multipart/form-data">
    @csrf
    <div class="row">
             <div class="col-8 offset2">
@@ -16,6 +16,13 @@
 
                     <div class="col-md-6">
                         <input id="name" class="form-control" type="text" name="name" autofocus>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="description" class="form-control" type="text" name="description">
                     </div>
                 </div>
                 <div>
