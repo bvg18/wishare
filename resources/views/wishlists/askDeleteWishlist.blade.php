@@ -16,7 +16,7 @@
                     <br>
                     <div>
                         <select class="form-select" id="choose" name="choose">
-                            <option selected>No, delete all products</option>
+                            <option selected VALUE="-1">No, delete all products</option>
                             @foreach($wishlists as $w)
                                 <option value="{{$w->id}}">{{$w->name}}</option>
                             @endforeach
