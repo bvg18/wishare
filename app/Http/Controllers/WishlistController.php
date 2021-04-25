@@ -80,4 +80,54 @@ class WishlistController extends Controller
         return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories]);
     }
 
+    public function askWishlistChooseGET($idWishlistDelete) 
+    {
+        $wishlistDelete = Wishlist::find($idWishlistDelete);
+        $userId = Auth::id();
+        $wishlists = Wishlist::where('users_id', $userId);
+
+        return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+    }
+
+    public function askWishlistChoosePOST($idWishlistDelete, Request $request) 
+    {
+        $wishlistDelete = Wishlist::find($idWishlistDelete);
+
+        $request->validate([
+            'choose' => 'required',
+        ]);
+
+        $wishlistProducts = Wishlist::find($request->input('choose'));
+        $userId = Auth::id();$userId = Auth::id();
+
+        if ($wishlistProducts =! null) {
+            // pasar productos y borrrar wishlist
+            // pasar productos
+            $this->deleteWishlist($idWishlistDelete);
+        }
+        else {
+            // borrar todo 
+            $this->deleteProducts($wishlistDelete);
+            $this->deleteWishlist($idWishlistDelete);
+        }
+
+        return redirect()->action('WishlistController@listWishlist', [$userId]);  
+
+        // $wishlist = Wishlist::find($id);
+    }
+
+    public function deleteProducts($wishlist)
+    {
+        $products = $wishlist->products();
+        for ($i=0; $i < count($products); $i++) { 
+            $product = Product::find($products[$i]->id);
+            $product->delete();
+        }
+    }
+
+    public function deleteWishlist($id) 
+    {
+        $wishlist = Wishlist::find($id);
+        $wishlist->delete();
+    }
 }

@@ -28,6 +28,9 @@ Route::middleware('auth')->group (function () {
 
     Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
     Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
+    Route::get('/wishlist/{id}/delete', 'WishlistController@askWishlistChooseGET');//Borrar wishlist con el nombre id
+    Route::post('/wishlist/{id}/delete', 'WishlistController@askWishlistChoosePOST');//Borrar wishlist con el nombre id
+
     Route::get('/createwishlist', 'WishlistController@formNewWishlist');//Muestra el formulario de nueva lista
     Route::post('/createwishlist', 'WishlistController@addNewWishlist');//Crea la wishlist con el nombre indicado
 
