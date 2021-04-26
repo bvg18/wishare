@@ -83,8 +83,8 @@ class WishlistController extends Controller
     public function askWishlistChooseGET($idWishlistDelete) 
     {
         $wishlistDelete = Wishlist::find($idWishlistDelete);
-        $userId = Auth::id();
-        $wishlists = Wishlist::where('users_id', $userId);
+        $user = Auth::user();
+        $wishlists = $user->wishlists;
 
         return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
     }
@@ -105,34 +105,42 @@ class WishlistController extends Controller
             $this->copyProductsToWishlist($wishlistDelete, $toWishlist);
             $this->deleteProducts($wishlistDelete);
             $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@showWishlist', [$toWishlist->id]);  
         }
         else {
             // borrar todo 
             $this->deleteProducts($wishlistDelete);
             $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@listWishlist', [$userId]);  
         }
-
-        return redirect()->action('WishlistController@listWishlist', [$userId]);  
     }
 
     public function copyProductsToWishlist($wishlist, $toWishlist)
     {
-        $products = $wishlist->products();
+        $products = $wishlist->products;
         foreach ($products as $p) { 
-            $copy = clone $p;
-            $copy->wishlists_id = $toWishlist->id;
-            $copy->save();
+            
+            $product = new Product([]);
+
+            $product->name = $p->name;
+            $product->wishlists_id = $toWishlist->id;
+            $product->description = $p->description;
+            $product->url = $p->url;
+            $product->categories_id = $p->categories_id;
+
+            if($p->image != null){ //Imagen del producto                
+                $product->image = $p->image;
+            }
+            $product->save();
         }
     }
 
     public function deleteProducts($wishlist)
     {
-        $products = $wishlist->products();
+        $products = $wishlist->products;
         
         foreach ($products as $p) { 
-            $product = Product::find($p->id);
-            $wishlist->productsDelete()->detach($product->id);
-            $product->delete();
+            $p->delete();
         }
     }
 

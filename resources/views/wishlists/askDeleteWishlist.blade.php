@@ -16,9 +16,11 @@
                     <br>
                     <div>
                         <select class="form-select" id="choose" name="choose">
-                            <option selected VALUE="6">No, delete all products</option>
+                            <option selected VALUE="-1">No, delete all products</option>
                             @foreach($wishlists as $w)
-                                <option value="{{$w->id}}">{{$w->name}}</option>
+                                @if($w->id != $deleteID->id)
+                                    <option value="{{$w->id}}">{{$w->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
