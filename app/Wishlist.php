@@ -25,4 +25,8 @@ class Wishlist extends Model
     public function products() {
         return $this->hasMany('App\Product', 'wishlists_id');
     }
+
+    public function productsDelete(){
+        return $this->belongsToMany('App\Product','wishlists_id','user_id');
+    }
 }

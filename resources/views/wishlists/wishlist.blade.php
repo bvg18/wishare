@@ -18,6 +18,7 @@
                         <h1> {{$wishlist->name}} </h1>
                         <a href="{{action('WishlistController@formEditWishlist', [$wishlist->id]) }}"> edit </a>
                         <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
+                        <a href="{{action('WishlistController@askWishlistChooseGET', [$wishlist->id]) }}">Delete wishlist</a>
                     </div>
                     <div>
                         {{$wishlist->description}}

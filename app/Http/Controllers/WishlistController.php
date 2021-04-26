@@ -80,4 +80,73 @@ class WishlistController extends Controller
         return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories]);
     }
 
+    public function askWishlistChooseGET($idWishlistDelete) 
+    {
+        $wishlistDelete = Wishlist::find($idWishlistDelete);
+        $user = Auth::user();
+        $wishlists = $user->wishlists;
+
+        return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+    }
+
+    public function askWishlistChoosePOST($idWishlistDelete, Request $request) 
+    {
+        $wishlistDelete = Wishlist::find($idWishlistDelete);
+
+        $request->validate([
+            'choose' => 'required',
+        ]);
+
+        $toWishlist = Wishlist::find($request->input('choose'));
+        $userId = Auth::id();$userId = Auth::id();
+
+        if ($request->input('choose') != "-1") {
+            // pasar productos y borrrar wishlist
+            $this->copyProductsToWishlist($wishlistDelete, $toWishlist);
+            $this->deleteProducts($wishlistDelete);
+            $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@showWishlist', [$toWishlist->id]);  
+        }
+        else {
+            // borrar todo 
+            $this->deleteProducts($wishlistDelete);
+            $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@listWishlist', [$userId]);  
+        }
+    }
+
+    public function copyProductsToWishlist($wishlist, $toWishlist)
+    {
+        $products = $wishlist->products;
+        foreach ($products as $p) { 
+            
+            $product = new Product([]);
+
+            $product->name = $p->name;
+            $product->wishlists_id = $toWishlist->id;
+            $product->description = $p->description;
+            $product->url = $p->url;
+            $product->categories_id = $p->categories_id;
+
+            if($p->image != null){ //Imagen del producto                
+                $product->image = $p->image;
+            }
+            $product->save();
+        }
+    }
+
+    public function deleteProducts($wishlist)
+    {
+        $products = $wishlist->products;
+        
+        foreach ($products as $p) { 
+            $p->delete();
+        }
+    }
+
+    public function deleteWishlist($id) 
+    {
+        $wishlist = Wishlist::find($id);
+        $wishlist->delete();
+    }
 }
