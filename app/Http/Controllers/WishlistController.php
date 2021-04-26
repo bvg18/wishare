@@ -102,32 +102,36 @@ class WishlistController extends Controller
 
         if ($request->input('choose') != "-1") {
             // pasar productos y borrrar wishlist
-            //$this->copyProductsToWishlist($wishlistDelete, $toWishlist);
-            //$this->deleteProducts($wishlistDelete);
+            $this->copyProductsToWishlist($wishlistDelete, $toWishlist);
+            $this->deleteProducts($wishlistDelete);
             $this->deleteWishlist($idWishlistDelete);
         }
         else {
             // borrar todo 
-            //$this->deleteProducts($wishlistDelete);
+            $this->deleteProducts($wishlistDelete);
             $this->deleteWishlist($idWishlistDelete);
         }
 
         return redirect()->action('WishlistController@listWishlist', [$userId]);  
-
-        // $wishlist = Wishlist::find($id);
     }
 
     public function copyProductsToWishlist($wishlist, $toWishlist)
     {
-        // copiar de wishlist a toWishlist los productos
-        // cambiar solo la columna wishlist o copiar entero y luego borrar
+        $products = $wishlist->products();
+        foreach ($products as $p) { 
+            $copy = clone $p;
+            $copy->wishlists_id = $toWishlist->id;
+            $copy->save();
+        }
     }
 
     public function deleteProducts($wishlist)
     {
         $products = $wishlist->products();
-        for ($i=0; $i < count($products); $i++) { 
-            $product = Product::find($products[$i]->id);
+        
+        foreach ($products as $p) { 
+            $product = Product::find($p->id);
+            $wishlist->productsDelete()->detach($product->id);
             $product->delete();
         }
     }
