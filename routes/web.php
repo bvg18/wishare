@@ -41,7 +41,9 @@ Route::middleware('auth')->group (function () {
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
     Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
     
-    //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
+    Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
 Route::middleware('admin')->group (function () {
@@ -55,7 +57,7 @@ Route::middleware('admin')->group (function () {
 // todas las URLs aqui seran accesibles por cualquier rol en cualquier momento
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/', 'HomeController@index');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
