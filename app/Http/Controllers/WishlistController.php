@@ -77,7 +77,8 @@ class WishlistController extends Controller
 
         $categories = Category::All();
 
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories]);
+        $myList = (Auth::id() == $wishlist->user->id);
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories, 'myList'=>$myList]);
     }
 
     public function askWishlistChooseGET($idWishlistDelete) 
