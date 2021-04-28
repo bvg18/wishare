@@ -16,8 +16,14 @@
 
                     <div class="d-flex justify-content-between align-items-baseline">
                         <h1> {{$wishlist->name}} </h1>
-                        <a href="{{action('WishlistController@formRenameWishlist', [$wishlist->id]) }}"> rename </a>
-                        <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
+                        @if ($myList)
+                            <a href="{{action('WishlistController@formEditWishlist', [$wishlist->id]) }}"> edit </a>
+                            <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
+                            <a href="{{action('WishlistController@askWishlistChooseGET', [$wishlist->id]) }}">Delete wishlist</a>
+                        @endif
+                    </div>
+                    <div>
+                        {{$wishlist->description}}
                     </div>
                     
                     <table class="table table-striped">
@@ -33,7 +39,6 @@
                     @foreach($products as $product)
                         <tr>
                             <td>
-                                <!--img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="300" height="31"-->
                                 <img src="{{ asset('img/products/' . $product->image) }}" alt="No disponible" width="200" height="200">
                             </td>
                             <td>
@@ -42,21 +47,20 @@
                                 {{$product->description}}
                             </td>
                             <td>
-                                @foreach($categories as $category)
-                                    @if($category->id == $product->categories_id)
-                                        {{$category->name}}
-                                        @break
-                                    @endif
-                                @endforeach
+                                {{$product->category->name}}
                             </td>
                             <td>
                                 <a href="{{$product->url}}" target="_blank">Ver</a>
                             </td>
                             <td>
-                                <form action="{{action('ProductController@deleteProductOfWishList', [$wishlist->id, $product->id]) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
+                                @if ($myList)
+                                    <form action="{{action('ProductController@deleteProductOfWishList', [$wishlist->id, $product->id]) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                @else
+                                    <button class="btn btn-info">Add to my wishlist</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

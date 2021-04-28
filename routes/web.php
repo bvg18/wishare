@@ -28,17 +28,22 @@ Route::middleware('auth')->group (function () {
 
     Route::get('/wishlists/{id}', 'WishlistController@listWishlist');//Para listar wishlists del usuario indicado
     Route::get('/wishlist/{id}', 'WishlistController@showWishlist');//Para mostrar la wishlist
+    Route::get('/wishlist/{id}/delete', 'WishlistController@askWishlistChooseGET');//Borrar wishlist con el nombre id
+    Route::post('/wishlist/{id}/delete', 'WishlistController@askWishlistChoosePOST');//Borrar wishlist con el nombre id
+
     Route::get('/createwishlist', 'WishlistController@formNewWishlist');//Muestra el formulario de nueva lista
     Route::post('/createwishlist', 'WishlistController@addNewWishlist');//Crea la wishlist con el nombre indicado
 
-    Route::get('/renameWishlist/{id}', 'WishlistController@formRenameWishlist');//Muestra el formulario pare renombrar wishlsit
-    Route::post('/renameWishlist', 'WishlistController@renameWishlist');//renombra wishlist
+    Route::get('/editWishlist/{id}', 'WishlistController@formEditWishlist');//Muestra el formulario para editar wishlsit
+    Route::post('/editWishlist', 'WishlistController@editWishlist');//editar wishlist
 
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
     Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
     
-    //Route::get('/wishlist', 'WishlistController@showMyOnlyWishlist');//En caso de tener sólo una wishlist
+    Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
 Route::middleware('admin')->group (function () {
@@ -52,7 +57,7 @@ Route::middleware('admin')->group (function () {
 // todas las URLs aqui seran accesibles por cualquier rol en cualquier momento
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/', 'HomeController@index');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 

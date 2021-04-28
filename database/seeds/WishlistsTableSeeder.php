@@ -40,7 +40,8 @@ class WishlistsTableSeeder extends Seeder
         $user2=User::where('name','testname')->first();
         $w = new Wishlist (
             [
-                'name' => 'testwishlist1',
+                'name' => 'big wishlist',
+                'description' => 'some description',
                 'users_id' => $user2->id,
             ]
         );
@@ -50,6 +51,7 @@ class WishlistsTableSeeder extends Seeder
         $w = new Wishlist (
             [
                 'name' => 'testwishlist2',
+                'description' => 'another description',
                 'users_id' => $user2->id,
             ]
         );
