@@ -43,6 +43,7 @@ Route::middleware('auth')->group (function () {
     
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index')->name('home');
+    
 
 });
 
@@ -57,6 +58,9 @@ Route::middleware('admin')->group (function () {
 // todas las URLs aqui seran accesibles por cualquier rol en cualquier momento
 
 Auth::routes();
+Route::get('/about', function (){
+    return view('about');
+})->name('about');
 //Route::get('/', 'HomeController@index');
 //Route::get('/home', 'HomeController@index')->name('home');
 
