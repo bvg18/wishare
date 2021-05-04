@@ -26,6 +26,11 @@
                         @foreach($wishlists as $wishlist)
                             <li class="list-group-item" >
                                 <a href="{{action('WishlistController@showWishlist', [$wishlist->id]) }}">{{$wishlist->name}}</a>
+                                @if($wishlist->private)
+                                <small class="text-muted m-1 float-right">Private</small>
+                                @else
+                                <small class="text-muted m-1 float-right">Public</small>
+                                @endif
                             </li>
                             
                         @endforeach

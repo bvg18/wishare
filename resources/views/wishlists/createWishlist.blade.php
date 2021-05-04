@@ -23,8 +23,15 @@
                         </span>
                         @enderror
                     </div>
+
+                    <label class="col-md-4 col-form-label text-md-right" for= "private"> Private </label>
+                    <div class="d-flex flex-wrap align-content-center col-md-4">
+                        <input type="checkbox" id="private" name="private" value="true">
+                        
+                    </div>
                 </div>
 
+              
                 
                 <div class="row">
                     <div class="col-md-4 ml-3"></div>

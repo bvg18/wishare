@@ -51,7 +51,9 @@ class WishlistController extends Controller
 
         $wishlist->name = $request->input('name');
         $wishlist->users_id = $userId;
-
+        if($request->input('private')=="true"){
+            $wishlist->private=true;
+        }
         $wishlist->save();
 
         return redirect()->action('WishlistController@listWishlist', [$userId]);
@@ -59,7 +61,8 @@ class WishlistController extends Controller
 
     public function formEditWishlist($id)
     {
-        return view('wishlists/editWishlist', ['wishlist_id' => $id]);
+        $wishlist=Wishlist::find($id);
+        return view('wishlists/editWishlist', ['wishlist_id' => $id,'wishlist'=>$wishlist]);
     }
 
     public function editWishlist(Request $request) {
@@ -72,6 +75,12 @@ class WishlistController extends Controller
             $wishlist->name=$name;
         }
         $wishlist->description=$description;
+        if($request->input('private')=="true"){
+            $wishlist->private=true;
+        }
+        else{
+            $wishlist->private=false;
+        }
         $wishlist->save();
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
