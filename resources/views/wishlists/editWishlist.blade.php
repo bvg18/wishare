@@ -29,7 +29,17 @@
                     <input type="hidden" name="wishlist_id" value = {{$wishlist_id}}>
                 </div>
 
-
+                <div class="form-group row"> 
+                     <label class="col-md-4 col-form-label text-md-right" for= "private"> Private </label>
+                    <div class="d-flex flex-wrap align-content-center col-md-4">
+                        @if($wishlist->private)
+                        <input type="checkbox" id="private" name="private" value="true" checked>
+                        @else
+                        <input type="checkbox" id="private" name="private" value="true">
+                        @endif
+                        
+                    </div>
+                </div>
                 
                 <div class="row">
                     <div class="col-md-4 ml-3"></div>

@@ -74,6 +74,7 @@
             </h3>
             <ul class="list-group list-group-flush">
                 @foreach($wishlists as $wishlist)
+                    @if(!($wishlist->private) || $myUser)
                     <li class="list-group-item" style="padding:.75rem 0 !important;">
                     <div class="container">
                         <div class="row">
@@ -84,12 +85,20 @@
                             </div>
                             <div class="col-4">
                                 <div class="row justify-content-end">
-                                <small class="text-muted">{{$wishlist->products->count()}}</small>
+                                @if($myUser)
+                                    @if($wishlist->private)
+                                    <small class="text-muted m-1">Private</small>
+                                    @else
+                                    <small class="text-muted m-1">Public</small>
+                                    @endif
+                                @endif
+                                <small class="text-muted m-1">{{$wishlist->products->count()}}</small>
                                 </div>
                             </div>
                         </div>
                         </div>
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

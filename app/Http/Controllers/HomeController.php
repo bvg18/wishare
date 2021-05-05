@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $productsOrdered = Product::orderBy('created_at','desc')->get();
         $productsOrderedAndFiltered = $productsOrdered->filter(function ($value, $key) {
-            return Auth::user()->follows->contains($value->wishlist->user) || Auth::id() == $value->wishlist->user->id;
+            return (Auth::user()->follows->contains($value->wishlist->user) || Auth::id() == $value->wishlist->user->id) && !($value->wishlist->private);
         });
         
         return view('home', ['prodOrdeded' => $productsOrderedAndFiltered]);
