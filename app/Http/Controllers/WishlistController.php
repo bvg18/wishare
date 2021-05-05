@@ -22,17 +22,23 @@ class WishlistController extends Controller
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
         $myList = (Auth::id() == $wishlist->user->id);
-
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList]);
+        if($myList || !($wishlist->private)){
+            return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList]);
+        }
+        else{
+                 return redirect()->action('UserController@showUser', [$wishlist->user->id]);
+        }
     }
 
     public function listWishlist($userId) {
         
         $user = User::findOrFail($userId);
         //$wishlists = $user->wishlists;
+        $myList = (Auth::id() == $userId);
+
         $wishlists = Wishlist::where('users_id', $userId)->paginate(10);
 
-        return view('wishlists/wishlists', ['user' => $user, 'wishlists' => $wishlists]);
+        return view('wishlists/wishlists', ['user' => $user, 'wishlists' => $wishlists,'myList'=>$myList]);
     }
 
     public function formNewWishlist() 

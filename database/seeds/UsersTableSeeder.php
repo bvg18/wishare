@@ -47,11 +47,12 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testname',
                 'email' => 'testemail@testemail.com',
                 'password' => Hash::make('test'),
-            ]
+            ]   
         );
 
         $user -> save();
 
+        $user2->follows()->attach($user->id);
         $user = new User(
             [
                 'name' => 'testuser1',
