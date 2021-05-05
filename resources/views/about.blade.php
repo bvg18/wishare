@@ -33,6 +33,10 @@
         margin-top: 7em;
         margin-bottom: 5em;
     }
+    #seccion5{
+        background-color: #9fd8cb;
+        margin-top: 7em;
+    }
     .answer{
         transition:all .1s ease;
         border:none;
@@ -44,6 +48,13 @@
     .btn-verde{
         background-color:#9fd8cb;
         color:white;
+    }
+    .card-body{
+        border:none;
+        margin:10px 5px 5px 5px;
+    }
+    footer{
+        background-color:#517664;
     }
 </style>
 
@@ -95,16 +106,93 @@
 <div id="seccion4" class="container">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 mb-2">
+            <div class="col-12 mb-5">
                 <h3 class="text-center">FAQ's</h3>
             </div>
             <div class="col-12 col-lg-8">
-                <a href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="card shadow p-3 answer">
+                <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="card shadow p-3 answer mb-4">
                     <h4 class="text-center text-dark">¿Pregunta 1?</h4>
                 </a>
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <a data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2" class="card shadow p-3 answer mb-4">
+                    <h4 class="text-center text-dark">¿Pregunta 2?</h4>
+                </a>
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <a data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3" class="card shadow p-3 answer mb-4">
+                    <h4 class="text-center text-dark">¿Pregunta 3?</h4>
+                </a>
+                <div class="collapse multi-collapse" id="multiCollapseExample3">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4" class="card shadow p-3 answer mb-4">
+                    <h4 class="text-center text-dark">¿Pregunta 4?</h4>
+                </a>
+                <div class="collapse multi-collapse" id="multiCollapseExample4">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="seccion5">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-12 col-lg-6">
+                <img src="/img/about/christin-hume-Hcfwew744z4-unsplash.jpg" alt="" class="img-fluid">
+                <div class="d-block d-lg-none" style="height:50px;"></div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h3>Titulo de prueba</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum quo deleniti quidem illum, veniam maiores error corporis ad voluptatum ducimus doloremque eius quam odio, suscipit incidunt placeat et at.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum quo deleniti quidem illum, veniam maiores error corporis ad voluptatum ducimus doloremque eius quam odio, suscipit incidunt placeat et at.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="">
+  <!-- Footer -->
+  <footer class="text-center text-dark bg-light">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA -->
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="mr-3">Register for free</span>
+          <button type="button" class="btn btn-outline-dark btn-rounded">
+            Sign up!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-dark" href="/">Wishare</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</section>
 
 @endsection
