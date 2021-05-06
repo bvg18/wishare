@@ -21,6 +21,8 @@
                             <a href="{{action('WishlistController@formEditWishlist', [$wishlist->id]) }}"> Edit </a>
                             <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
                             <a href="{{action('WishlistController@askWishlistChooseGET', [$wishlist->id]) }}">Delete wishlist</a>
+                        @else
+                            <a href="{{action('WishlistController@copyWishlistOtherUserGET', [$wishlist->id]) }}"> Copy me</a>
                         @endif
                     </div>
                     <div>
