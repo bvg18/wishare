@@ -16,9 +16,9 @@
 
                     <div class="d-flex justify-content-between align-items-baseline">
                         <h1> {{$wishlist->name}} </h1>
+                        <a href="{{action('WishlistController@sortByCategory', [$wishlist->id]) }}"> Sort by Category Id</a>
                         @if ($myList)
-                            <a href="{{action('WishlistController@formEditWishlist', [$wishlist->id]) }}"> edit </a>
-                            <a href="{{action('WishlistController@sortByCategory', [$wishlist->id]) }}"> sort </a>
+                            <a href="{{action('WishlistController@formEditWishlist', [$wishlist->id]) }}"> Edit </a>
                             <a href="{{action('ProductController@formNewProduct', [$wishlist->id]) }}">Add new product</a>
                             <a href="{{action('WishlistController@askWishlistChooseGET', [$wishlist->id]) }}">Delete wishlist</a>
                         @endif
