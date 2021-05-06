@@ -43,6 +43,9 @@
                                 <p>
                                 {{$productOrder->category->name}}
                                 </p>
+                                @if($productOrder->wishlist->user->id != Auth::id())
+                                    <a class="btn btn-info" href="{{action('ProductController@formCopyProduct', [$productOrder->id]) }}">Add to my wishlist</a>
+                                @endif
                             </div>
                         </div>
                         <p></p>

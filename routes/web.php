@@ -42,6 +42,8 @@ Route::middleware('auth')->group (function () {
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
     Route::post('/product/{idWishlist}', 'ProductController@addProductToWishlist');//Realiza la inserción del producto en la wishlist
     Route::post('/product/{idWishlist}/delete/{idProduct}', 'ProductController@deleteProductOfWishList'); //Realiza el borrado de un producto de una wishlist
+    Route::get('/product/listtocopy/{id}', 'ProductController@formCopyProduct');;//Muestra el formulario para elegir la lista a copiar
+    Route::post('/product/copy/{id}', 'ProductController@copyProduct');//Copia el producto en la lista indicada
     
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index')->name('home');
