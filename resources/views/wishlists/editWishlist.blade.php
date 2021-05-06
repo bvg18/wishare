@@ -15,14 +15,14 @@
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="name" class="form-control" type="text" name="name" autofocus>
+                        <input id="name" class="form-control" type="text" name="name" value="{{ old('name') ?? $wishlist->name }}" autofocus>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                     <div class="col-md-6">
-                        <input id="description" class="form-control" type="text" name="description">
+                        <input id="description" class="form-control" type="text" value="{{ old('description') ?? $wishlist->description }}" name="description">
                     </div>
                 </div>
                 <div>

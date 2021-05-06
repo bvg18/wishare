@@ -105,10 +105,18 @@ class WishlistController extends Controller
     public function askWishlistChooseGET($idWishlistDelete) 
     {
         $wishlistDelete = Wishlist::find($idWishlistDelete);
+        //$followersC=$followers->count();
         $user = Auth::user();
-        $wishlists = $user->wishlists;
-
-        return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+        if($wishlistDelete->products->count() > 0)
+        {            
+            $wishlists = $user->wishlists;
+            return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+        }
+        else
+        {
+            $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@listWishlist', [$user->id]);
+        }
     }
 
     public function askWishlistChoosePOST($idWishlistDelete, Request $request) 
@@ -120,7 +128,7 @@ class WishlistController extends Controller
         ]);
 
         $toWishlist = Wishlist::find($request->input('choose'));
-        $userId = Auth::id();$userId = Auth::id();
+        $userId = Auth::id();
 
         if ($request->input('choose') != "-1") {
             // pasar productos y borrrar wishlist

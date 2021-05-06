@@ -60,7 +60,7 @@
                                         <button class="btn btn-danger">Delete</button>
                                     </form>
                                 @else
-                                    <button class="btn btn-info">Add to my wishlist</button>
+                                    <a class="btn btn-info" href="{{action('ProductController@formCopyProduct', [$product->id]) }}">Add to my wishlist</a>
                                 @endif
                             </td>
                         </tr>
