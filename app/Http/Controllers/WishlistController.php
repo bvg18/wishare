@@ -96,6 +96,15 @@ class WishlistController extends Controller
         return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories, 'myList'=>$myList]);
     }
 
+    public function sortByCategory($id)
+    {
+        $wishlist=Wishlist::find($id);
+        $products = Product::where('wishlists_id', $id)->orderBy('categories_id')->paginate(10);
+        $categories = Category::All();
+        $myList = (Auth::id() == $wishlist->user->id);
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories, 'myList'=>$myList]);
+    }
+
     public function askWishlistChooseGET($idWishlistDelete) 
     {
         $wishlistDelete = Wishlist::find($idWishlistDelete);
