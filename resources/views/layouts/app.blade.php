@@ -53,17 +53,24 @@
               
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
                     <!-- Left Side Of Navbar -->
-                    @if(Auth::check())
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check())
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
+                            </li>
+                        
+                        @endif
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
+                                <a class="nav-link" href="{{route('about')}}"> About</a>
                         </li>
                     </ul>
-                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
