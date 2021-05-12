@@ -145,6 +145,27 @@ class WishlistController extends Controller
         }
     }
 
+    public function copyWishlistOtherUserGET($copyWishlistId)
+    {
+        $userId = Auth::id();
+        $this->copyWishlistOtherUser($copyWishlistId);
+        return redirect()->action('WishlistController@listWishlist', [$userId]);  
+    }
+
+    public function copyWishlistOtherUser($copyWishlistId)
+    {
+        $userId = Auth::id();
+        $copyWishlist = Wishlist::find($copyWishlistId);
+        $newWishlist = new Wishlist([]);
+
+        $newWishlist->users_id = $userId;
+        $newWishlist->name = $copyWishlist->name;
+        $newWishlist->description = $copyWishlist->description;
+        $newWishlist->save();
+
+        $this->copyProductsToWishlist($copyWishlist, $newWishlist); 
+    }
+
     public function copyProductsToWishlist($wishlist, $toWishlist)
     {
         $products = $wishlist->products;
