@@ -28,6 +28,36 @@
                     <div>
                         {{$wishlist->description}}
                     </div>
+
+                    <form action="{{action('WishlistController@filterByCategory', [$wishlist->id])}}" method="POST" enctype="multipart/form-data">
+                        @csrf 
+                        
+                            <!--label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Filter') }}</label-->
+                            <div class="form-group row">
+                            <div class="col-md-6">
+                                <!--input id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" value="{{ old('category') }}" required autocomplete="category" autofocus-->
+                        
+                                <select class="form-control" id="category" name="category" type="">
+                                <option selected VALUE="-1">All</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category-> id }}"> {{ $category-> name }}</option>
+                                    @endforeach
+                                </select>
+                            
+                            </div>
+                            </div>
+                            @error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            
+                            
+                                <div class="col-md-4 ml-3"></div>
+                                <button class="btn btn-primary">Filter products</button>
+                            
+                    
+                        </form>
                     
                     <table class="table table-striped">
                         <tr>

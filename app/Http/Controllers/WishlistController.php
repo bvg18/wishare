@@ -18,12 +18,13 @@ class WishlistController extends Controller
         $wishlist = Wishlist::find($id);
 
         //$products = $wishlist->products;
+        $categories = Category::All();
 
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
         $myList = (Auth::id() == $wishlist->user->id);
         if($myList || !($wishlist->private)){
-            return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList]);
+            return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList, 'categories' => $categories]);
         }
         else{
                  return redirect()->action('UserController@showUser', [$wishlist->user->id]);
@@ -91,7 +92,10 @@ class WishlistController extends Controller
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
         $myList = (Auth::id() == $wishlist->user->id);
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList]);
+
+        $categories = Category::All();
+
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList, 'categories' => $categories]);
     }
 
     public function sortByCategory($id)
@@ -99,7 +103,33 @@ class WishlistController extends Controller
         $wishlist=Wishlist::find($id);
         $products = Product::where('wishlists_id', $id)->orderBy('categories_id')->paginate(10);
         $myList = (Auth::id() == $wishlist->user->id);
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList]);
+        $categories = Category::All();
+
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList, 'categories' => $categories]);
+    }
+
+    public function filterByCategory($idWishlist, Request $request)
+    {
+        $wishlist = Wishlist::findOrFail($idWishlist);
+        $category = $request->input('category');
+        if($category != -1)
+        {
+            $products = Product::where('wishlists_id', $idWishlist)->where('categories_id', $category)->paginate(10);
+            $categories = Category::All();
+            $myList = (Auth::id() == $wishlist->user->id);
+            if($myList || !($wishlist->private)){
+                return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList, 'categories' => $categories]);
+            }
+            else{
+                 return redirect()->action('UserController@showUser', [$wishlist->user->id]);
+            }
+        }
+        else 
+        {
+            return redirect()->action('WishlistController@showWishlist', [$idWishlist]);  
+        }
+
+        
     }
 
     public function askWishlistChooseGET($idWishlistDelete) 

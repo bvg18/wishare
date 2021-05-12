@@ -65,7 +65,7 @@
         <div class="row justify-content-center">
             <h1 class="text-center">Crea tus whishlist</h1>
             <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati explicabo minima praesentium. Et ducimus architecto consequatur temporibus, error beatae dolorem inventore soluta nisi exercitationem nostrum facilis? Iste, repellat amet! Harum!</p>
-            <a href="" class="btn btn-dark">llamada a la accion</a>
+            <a href="{{ route('register') }}" class="btn btn-dark">llamada a la accion</a>
         </div>
     </div>
 </div>
@@ -95,8 +95,8 @@
                 <div class="col-12 col-lg-8">
                     <h2>titulo 1</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati autem velit earum ullam vitae nisi? Tenetur, numquam qui eos tempore velit delectus unde nostrum est ducimus, laudantium repudiandae facilis. A!</p>
-                    <a href="" class="btn btn-block btn-verde mt-1 d-block d-lg-none">Llamada a la accion</a>
-                    <a href="" class="btn btn-verde mt-1 d-none d-lg-inline-flex">Llamada a la accion</a>
+                    <a href="{{ route('register') }}" class="btn btn-block btn-verde mt-1 d-block d-lg-none">Llamada a la accion</a>
+                    <a href="{{ route('register') }}" class="btn btn-verde mt-1 d-none d-lg-inline-flex">Llamada a la accion</a>
                 </div>
             </div>
         </div>
@@ -176,9 +176,9 @@
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
           <span class="mr-3">Register for free</span>
-          <button type="button" class="btn btn-outline-dark btn-rounded">
+          <a href="{{ route('register') }}" type="button" class="btn btn-outline-dark btn-rounded">
             Sign up!
-          </button>
+          </a>
         </p>
       </section>
       <!-- Section: CTA -->
