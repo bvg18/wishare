@@ -37,6 +37,8 @@ Route::middleware('auth')->group (function () {
     Route::get('/editWishlist/{id}', 'WishlistController@formEditWishlist');//Muestra el formulario para editar wishlsit
     Route::post('/editWishlist', 'WishlistController@editWishlist');//editar wishlist
 
+    Route::get('/deduplicateWishlist/{id}', 'WishlistController@deduplicateWishlistForm');//Muestra el formulario para deduplicar
+
     Route::get('/wishlist_sorted/{id}', 'WishlistController@sortByCategory');//Para mostrar la wishlist ordenado
 
     Route::get('/product/new/{id}', 'ProductController@formNewProduct');//Muestra el formulario para anyadir producto a wishlist
