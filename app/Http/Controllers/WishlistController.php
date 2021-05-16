@@ -98,6 +98,32 @@ class WishlistController extends Controller
         return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList, 'categories' => $categories]);
     }
 
+
+    //   source  https://stackoverflow.com/questions/55715895/eloquent-detect-multiple-column-duplicate-data
+    public function deduplicateWishlistForm($id)
+    {
+        $wishlist = Wishlist::find($id);
+        $products = $wishlist->products()->get();
+        $products
+            // Group models by sub_id and name
+            ->groupBy(function ($item) { return $item->url.'_'.$item->name; })
+            // Filter to remove non-duplicates
+            ->filter(function ($arr) { return $arr->count()>1; })
+            // Process duplicates groups
+            ->each(function ($arr) {
+                $arr
+                    // Sort by id  (so first item will be original)
+                    ->sortBy('id')
+                    // Remove first (original) item from dupes collection
+                    ->splice(1)
+                    // Remove duplicated models from DB
+                    ->each(function ($model) {
+                        $model->delete();
+                    });
+            });
+        return redirect()->action ('WishlistController@showWishlist', [$id]);
+    }
+
     public function sortByCategory($id)
     {
         $wishlist=Wishlist::find($id);

@@ -100,6 +100,57 @@ class ProductsTableSeeder extends Seeder
 
         $product -> save();
 
+        $w=Wishlist::find(3);
+        $c=Category::find(5);
+
+        $product = new Product(
+            [
+                'name' => 'Video game',
+                'description' => 'Outriders',
+                'url' => 'https://www.amazon.es/Outriders-PlayStation-5-Importaci%C3%B3n-alemana/dp/B08LG28S6K/ref=sr_1_14?dchild=1&keywords=playstation+5&qid=1618410171&sr=8-14
+',
+                'image' => 'Videogame.jpg',
+                'wishlists_id' => $w->id,
+                'categories_id' => $c->id,
+            ]
+        );
+
+        $product -> save();
+
+        $w=Wishlist::find(4);
+        $c=Category::find(6);
+
+        $product = new Product(
+            [
+                'name' => 'Board game',
+                'description' => 'Monopoly',
+                'url' => 'https://www.amazon.es/Monopoly-C1009105-Madrid-Hasbro/dp/B071Z7LGR3/ref=sr_1_5?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=monopoly&qid=1618411238&sr=8-5
+',
+                'image' => 'Board_game.jpg',
+                'wishlists_id' => $w->id,
+                'categories_id' => $c->id,
+            ]
+        );
+
+        $product -> save();
+
+        $w=Wishlist::find(4);
+        $c=Category::find(6);
+
+        $product = new Product(
+            [
+                'name' => 'Board game',
+                'description' => 'Monopoly',
+                'url' => 'https://www.amazon.es/Monopoly-C1009105-Madrid-Hasbro/dp/B071Z7LGR3/ref=sr_1_5?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=monopoly&qid=1618411238&sr=8-5
+',
+                'image' => 'Board_game.jpg',
+                'wishlists_id' => $w->id,
+                'categories_id' => $c->id,
+            ]
+        );
+
+        $product -> save();
+
         $w=Wishlist::find(4);
         $c=Category::find(6);
 
