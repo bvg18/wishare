@@ -64,6 +64,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@index') }}">Search User</a>
+                            </li>
                         
                         @endif
 

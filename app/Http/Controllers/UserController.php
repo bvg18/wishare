@@ -10,6 +10,17 @@ use Illuminate\Database\Eloquent\Collection;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+        return view('users/index', ['users' => array()]);
+    }
+
+    public function search(Request $request)
+    {
+        $data = User::where('name', 'LIKE','%'.$request->user.'%')->get();
+        return view('users/index', ['users' => $data]);
+    }
+
     public function showUser($id)
     {
         $user = User::findOrFail($id);

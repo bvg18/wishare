@@ -17,6 +17,8 @@
 Route::middleware('auth')->group (function () {
 
     // Parte privada para un usuario normal (basico)
+    Route::get('/user', 'UserController@index');//Busqeuda de usuarios
+    Route::post('/user', 'UserController@search');
     Route::get('/user/{id}', 'UserController@showUser');//Muestra perfil de un usuario
     Route::post('/user/follow/{id}', 'UserController@followUser');//Para seguir a un usuario
     Route::post('/user/unfollow/{id}', 'UserController@unfollowUser');//Para dejar de seguir seguir a un usuario
