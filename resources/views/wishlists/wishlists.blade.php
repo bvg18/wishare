@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    a{
+        color:black;
+    }
+    a:hover{
+        color:#517664;
+        text-decoration: none;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1> {{$user->name}}'s Wishlists </h1></div>
+                <div class="card-header"><h3 class="text-center"> {{$user->name}}'s Wishlists </h3></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,11 +24,11 @@
                     @endif
 
                     <div class="d-flex justify-content-end align-items-baseline">
-                        <a href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
+                        <a class="btn btn-verde-oscuro" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
                     </div>
 
                     <div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush py-3">
                     @if (count($wishlists)  < 1)
                         <li class="list-group-item" > Ninguna Wishlist</li>
                     @else

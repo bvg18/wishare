@@ -45,16 +45,16 @@
         background-color: #d6e5e3;
         text-decoration: none;
     }
-    .btn-verde{
-        background-color:#9fd8cb;
-        color:white;
-    }
+    
     .card-body{
         border:none;
         margin:10px 5px 5px 5px;
     }
     footer{
         background-color:#517664;
+    }
+    body{
+        background-color: white !important;
     }
 </style>
 

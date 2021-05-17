@@ -26,6 +26,26 @@
         *{
             font-family: 'Montserrat', sans-serif !important;
         }
+        body{
+            background-color: #9fd8cb;
+        }
+        .btn-verde{
+            background-color:#9fd8cb;
+            color:white;
+        }
+        .btn-verde-oscuro{
+            background-color:#517664;
+            color:white;
+        }
+        .card-header{
+            background-color: #d6e5e3;
+            border-radius:15px 15px 0 0 !important;
+            border:none;
+        }
+        .card{
+            border:none;
+            border-radius:15px;
+        }
     </style>
 </head>
 <body>
