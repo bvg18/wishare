@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -27,8 +29,16 @@
                         <div class="form-group row justify-content-center my-3">
 
                             <div class="col-md-8">
-                                <input placeholder="{{ __('Password') }}" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                                <div class="input-group">
+                                    <input placeholder="{{ __('Password') }}" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" onclick="toggleVisibility()">
+                                            <span class="material-icons-outlined">
+                                                visibility
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -71,3 +81,14 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function toggleVisibility(){
+        var pass = document.getElementById('password');
+        if(pass.getAttribute('type')==='password'){
+            pass.setAttribute('type','text');
+        }else{
+            pass.setAttribute('type','password');
+        }
+    }
+</script>
