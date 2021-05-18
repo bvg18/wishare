@@ -63,9 +63,9 @@
 <div id="seccion1" class="mt-n4">
     <div id="texto-hero">
         <div class="row justify-content-center">
-            <h1 class="text-center">Crea tus whishlist</h1>
-            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati explicabo minima praesentium. Et ducimus architecto consequatur temporibus, error beatae dolorem inventore soluta nisi exercitationem nostrum facilis? Iste, repellat amet! Harum!</p>
-            <a href="{{ route('register') }}" class="btn btn-dark">llamada a la accion</a>
+            <h1 class="text-center">Crea y comparte tus whishlist</h1>
+            <p class="text-center">En wishare podras crear tus listas de productos y compartirlas con tus amigos.</p>
+            <a href="{{ route('register') }}" class="btn btn-dark">Comienza</a>
         </div>
     </div>
 </div>
@@ -73,15 +73,17 @@
 <div id="seccion2" class="container">
     <div class="row mb-5">
         <div class="col">
-            <h2>Titulo de prueba</h2>
+            <h2>Un lugar donde organizar tus compras online</h2>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-12 col-lg-6">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quam illo accusantium repellat cupiditate doloribus deleniti ut temporibus maxime, nobis odit natus dolorum corrupti nihil maiores voluptatibus, tenetur architecto molestias?</p>
+            <p>En wishare podrás organizar tus listas de productos e incluir los enlaces de estos mismos, para no perder los productos que te interesan.</p>
+            <p>Porás crear wishlists públicas y privadas, para que compartirlas con tus seguidores sea más facil aún.</p>
         </div>
         <div class="col-12 col-lg-6">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quam illo accusantium repellat cupiditate doloribus deleniti ut temporibus maxime, nobis odit natus dolorum corrupti nihil maiores voluptatibus, tenetur architecto molestias?</p>
+            <p>Además, podrás acceder a descuentos exclusivos sólo por pertenecer a nuestra comunidad.</p>
+            <p>únete totalmente gratis, y podrás acceder a estas ofertas.</p>
         </div>
     </div>
 </div>
@@ -93,10 +95,10 @@
                     <img class="img-fluid" src="/img/about/undraw_Note_list_re_r4u9.png" alt="">
                 </div>
                 <div class="col-12 col-lg-8">
-                    <h2>titulo 1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati autem velit earum ullam vitae nisi? Tenetur, numquam qui eos tempore velit delectus unde nostrum est ducimus, laudantium repudiandae facilis. A!</p>
-                    <a href="{{ route('register') }}" class="btn btn-block btn-verde mt-1 d-block d-lg-none">Llamada a la accion</a>
-                    <a href="{{ route('register') }}" class="btn btn-verde mt-1 d-none d-lg-inline-flex">Llamada a la accion</a>
+                    <h2>Todas tus compras organizadas en un mismo lugar</h2>
+                    <p>Podrás organizar tus productos en whishlists y categorías, y guardar los que mas te gusten de otros usuarios.</p>
+                    <a href="{{ route('register') }}" class="btn btn-block btn-verde mt-1 d-block d-lg-none">Regístrate Gratis</a>
+                    <a href="{{ route('register') }}" class="btn btn-verde mt-1 d-none d-lg-inline-flex">Regístrate Gratis</a>
                 </div>
             </div>
         </div>
@@ -111,35 +113,36 @@
             </div>
             <div class="col-12 col-lg-8">
                 <a data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" class="card shadow p-3 answer mb-4">
-                    <h4 class="text-center text-dark">¿Pregunta 1?</h4>
+                    <h4 class="text-center text-dark">¿Cuántas wishlist podré crear como máximo?</h4>
                 </a>
                 <div class="collapse multi-collapse" id="multiCollapseExample1">
                     <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        No hay un límite establecido, por lo que podrás crear tantas wishlists y productos como quieras.
                     </div>
                 </div>
                 <a data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2" class="card shadow p-3 answer mb-4">
-                    <h4 class="text-center text-dark">¿Pregunta 2?</h4>
+                    <h4 class="text-center text-dark">¿Es necesario algún plan premium para acceder a los descuentos?</h4>
                 </a>
                 <div class="collapse multi-collapse" id="multiCollapseExample2">
                     <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        Rotundamente no. Los descuentos están disponibles para todos los usuarios, estos aparecen en formato anuncio durante el uso de la app.
                     </div>
                 </div>
                 <a data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3" class="card shadow p-3 answer mb-4">
-                    <h4 class="text-center text-dark">¿Pregunta 3?</h4>
+                    <h4 class="text-center text-dark">¿De qué tiendas ofreceis los descuentos?</h4>
                 </a>
                 <div class="collapse multi-collapse" id="multiCollapseExample3">
                     <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        Disponemos de una gran cantidad de partners, por lo que la variedad en nuestros descuentos es muy diversa.
+                        ¡Regístrate Gratis y descubre a nuestros partners!
                     </div>
                 </div>
                 <a data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4" class="card shadow p-3 answer mb-4">
-                    <h4 class="text-center text-dark">¿Pregunta 4?</h4>
+                    <h4 class="text-center text-dark">¿Cómo puedo evitar que otros usuarios se enteren de lo que publico en mis wishlists?</h4>
                 </a>
                 <div class="collapse multi-collapse" id="multiCollapseExample4">
                     <div class="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        Podrás gestionar la visibilidad de tus wishlists a tu antojo, por lo que si quieres que una de tus wishlists sea privada, podrás cambiar su visibilidad instantaneamente.
                     </div>
                 </div>
             </div>
@@ -155,12 +158,12 @@
                 <div class="d-block d-lg-none" style="height:50px;"></div>
             </div>
             <div class="col-12 col-lg-6">
-                <h3>Titulo de prueba</h3>
+                <h3>Accede instantaneamente a tus productos</h3>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum quo deleniti quidem illum, veniam maiores error corporis ad voluptatum ducimus doloremque eius quam odio, suscipit incidunt placeat et at.
+                    Añade el enlace de tu tienda de confianza, y guardalo para revisarlo en futuras ocasiones, con esto ahorrarás tiempo y te será mas facil revisar si hay cambios en el precio del producto.
                 </p>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum quo deleniti quidem illum, veniam maiores error corporis ad voluptatum ducimus doloremque eius quam odio, suscipit incidunt placeat et at.
+                    Con el sistema de organizacion de productos de wishare por categorías, podrás acceder a los productos de la forma más rápida.
                 </p>
             </div>
         </div>
@@ -175,9 +178,9 @@
       <!-- Section: CTA -->
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
-          <span class="mr-3">Register for free</span>
+          <span class="mr-3">Regístrate Gratis</span>
           <a href="{{ route('register') }}" type="button" class="btn btn-outline-dark btn-rounded">
-            Sign up!
+            ¡Unirme!
           </a>
         </p>
       </section>
