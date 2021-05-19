@@ -59,6 +59,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testuser1',
                 'email' => 'testemail1@testemail.com',
                 'password' => Hash::make('test'),
+                'image' => 'patricio.webp'
             ]
         );
 
@@ -69,6 +70,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testuser2',
                 'email' => 'testemail2@testemail.com',
                 'password' => Hash::make('test'),
+                'image' => 'calamardo.jpeg'
             ]
         );
 
