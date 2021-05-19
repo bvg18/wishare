@@ -18,21 +18,28 @@ class WishlistController extends Controller
         $wishlist = Wishlist::find($id);
 
         //$products = $wishlist->products;
+        $categories = Category::All();
 
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
         $myList = (Auth::id() == $wishlist->user->id);
-
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList]);
+        if($myList || !($wishlist->private)){
+            return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList, 'categories' => $categories]);
+        }
+        else{
+                 return redirect()->action('UserController@showUser', [$wishlist->user->id]);
+        }
     }
 
     public function listWishlist($userId) {
         
         $user = User::findOrFail($userId);
         //$wishlists = $user->wishlists;
+        $myList = (Auth::id() == $userId);
+
         $wishlists = Wishlist::where('users_id', $userId)->paginate(10);
 
-        return view('wishlists/wishlists', ['user' => $user, 'wishlists' => $wishlists]);
+        return view('wishlists/wishlists', ['user' => $user, 'wishlists' => $wishlists,'myList'=>$myList]);
     }
 
     public function formNewWishlist() 
@@ -51,7 +58,9 @@ class WishlistController extends Controller
 
         $wishlist->name = $request->input('name');
         $wishlist->users_id = $userId;
-
+        if($request->input('private')=="true"){
+            $wishlist->private=true;
+        }
         $wishlist->save();
 
         return redirect()->action('WishlistController@listWishlist', [$userId]);
@@ -59,7 +68,8 @@ class WishlistController extends Controller
 
     public function formEditWishlist($id)
     {
-        return view('wishlists/editWishlist', ['wishlist_id' => $id]);
+        $wishlist=Wishlist::find($id);
+        return view('wishlists/editWishlist', ['wishlist_id' => $id,'wishlist'=>$wishlist]);
     }
 
     public function editWishlist(Request $request) {
@@ -72,22 +82,97 @@ class WishlistController extends Controller
             $wishlist->name=$name;
         }
         $wishlist->description=$description;
+        if($request->input('private')=="true"){
+            $wishlist->private=true;
+        }
+        else{
+            $wishlist->private=false;
+        }
         $wishlist->save();
         $products = Product::where('wishlists_id', $id)->paginate(10);
 
+        $myList = (Auth::id() == $wishlist->user->id);
+
         $categories = Category::All();
 
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList, 'categories' => $categories]);
+    }
+
+
+    //   source  https://stackoverflow.com/questions/55715895/eloquent-detect-multiple-column-duplicate-data
+    public function deduplicateWishlistForm($id)
+    {
+        $wishlist = Wishlist::find($id);
+        $products = $wishlist->products()->get();
+        $products
+            // Group models by sub_id and name
+            ->groupBy(function ($item) { return $item->url.'_'.$item->name; })
+            // Filter to remove non-duplicates
+            ->filter(function ($arr) { return $arr->count()>1; })
+            // Process duplicates groups
+            ->each(function ($arr) {
+                $arr
+                    // Sort by id  (so first item will be original)
+                    ->sortBy('id')
+                    // Remove first (original) item from dupes collection
+                    ->splice(1)
+                    // Remove duplicated models from DB
+                    ->each(function ($model) {
+                        $model->delete();
+                    });
+            });
+        return redirect()->action ('WishlistController@showWishlist', [$id]);
+    }
+
+    public function sortByCategory($id)
+    {
+        $wishlist=Wishlist::find($id);
+        $products = Product::where('wishlists_id', $id)->orderBy('categories_id')->paginate(10);
         $myList = (Auth::id() == $wishlist->user->id);
-        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'categories' => $categories, 'myList'=>$myList]);
+        $categories = Category::All();
+
+        return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList'=>$myList, 'categories' => $categories]);
+    }
+
+    public function filterByCategory($idWishlist, Request $request)
+    {
+        $wishlist = Wishlist::findOrFail($idWishlist);
+        $category = $request->input('category');
+        if($category != -1)
+        {
+            $products = Product::where('wishlists_id', $idWishlist)->where('categories_id', $category)->paginate(10);
+            $categories = Category::All();
+            $myList = (Auth::id() == $wishlist->user->id);
+            if($myList || !($wishlist->private)){
+                return view('wishlists/wishlist', ['wishlist' => $wishlist, 'products' => $products, 'myList' => $myList, 'categories' => $categories]);
+            }
+            else{
+                 return redirect()->action('UserController@showUser', [$wishlist->user->id]);
+            }
+        }
+        else 
+        {
+            return redirect()->action('WishlistController@showWishlist', [$idWishlist]);  
+        }
+
+        
     }
 
     public function askWishlistChooseGET($idWishlistDelete) 
     {
         $wishlistDelete = Wishlist::find($idWishlistDelete);
+        //$followersC=$followers->count();
         $user = Auth::user();
-        $wishlists = $user->wishlists;
-
-        return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+        if($wishlistDelete->products->count() > 0)
+        {            
+            $wishlists = $user->wishlists;
+            return view('wishlists/askDeleteWishlist', ['deleteID' => $wishlistDelete, 'wishlists' => $wishlists]);
+        }
+        else
+        {
+            $this->deleteWishlist($idWishlistDelete);
+            return redirect()->action('WishlistController@listWishlist', [$user->id]);
+        }
     }
 
     public function askWishlistChoosePOST($idWishlistDelete, Request $request) 
@@ -99,7 +184,7 @@ class WishlistController extends Controller
         ]);
 
         $toWishlist = Wishlist::find($request->input('choose'));
-        $userId = Auth::id();$userId = Auth::id();
+        $userId = Auth::id();
 
         if ($request->input('choose') != "-1") {
             // pasar productos y borrrar wishlist
@@ -114,6 +199,27 @@ class WishlistController extends Controller
             $this->deleteWishlist($idWishlistDelete);
             return redirect()->action('WishlistController@listWishlist', [$userId]);  
         }
+    }
+
+    public function copyWishlistOtherUserGET($copyWishlistId)
+    {
+        $userId = Auth::id();
+        $this->copyWishlistOtherUser($copyWishlistId);
+        return redirect()->action('WishlistController@listWishlist', [$userId]);  
+    }
+
+    public function copyWishlistOtherUser($copyWishlistId)
+    {
+        $userId = Auth::id();
+        $copyWishlist = Wishlist::find($copyWishlistId);
+        $newWishlist = new Wishlist([]);
+
+        $newWishlist->users_id = $userId;
+        $newWishlist->name = $copyWishlist->name;
+        $newWishlist->description = $copyWishlist->description;
+        $newWishlist->save();
+
+        $this->copyProductsToWishlist($copyWishlist, $newWishlist); 
     }
 
     public function copyProductsToWishlist($wishlist, $toWishlist)

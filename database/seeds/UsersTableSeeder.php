@@ -47,16 +47,19 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testname',
                 'email' => 'testemail@testemail.com',
                 'password' => Hash::make('test'),
-            ]
+                'image' => 'bobesponja.jpg'
+            ]   
         );
 
         $user -> save();
 
+        $user2->follows()->attach($user->id);
         $user = new User(
             [
                 'name' => 'testuser1',
                 'email' => 'testemail1@testemail.com',
                 'password' => Hash::make('test'),
+                'image' => 'patricio.webp'
             ]
         );
 
@@ -67,6 +70,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testuser2',
                 'email' => 'testemail2@testemail.com',
                 'password' => Hash::make('test'),
+                'image' => 'calamardo.jpeg'
             ]
         );
 

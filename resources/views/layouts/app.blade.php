@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
@@ -25,6 +25,26 @@
     <style>
         *{
             font-family: 'Montserrat', sans-serif !important;
+        }
+        body{
+            background-color: #9fd8cb;
+        }
+        .btn-verde{
+            background-color:#9fd8cb;
+            color:white;
+        }
+        .btn-verde-oscuro{
+            background-color:#517664;
+            color:white;
+        }
+        .card-header{
+            background-color: #d6e5e3;
+            border-radius:15px 15px 0 0 !important;
+            border:none;
+        }
+        .card{
+            border:none;
+            border-radius:15px;
         }
     </style>
 </head>
@@ -53,17 +73,27 @@
               
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
                     <!-- Left Side Of Navbar -->
-                    @if(Auth::check())
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check())
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ action('UserController@index') }}">Search User</a>
+                            </li>
+                        
+                        @endif
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{action('WishlistController@listWishlist', [Auth::user()->id] ) }}"> My Wishlists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ action('WishlistController@formNewWishlist') }}">New Wishlist</a>
+                                <a class="nav-link" href="{{route('about')}}"> About</a>
                         </li>
                     </ul>
-                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
