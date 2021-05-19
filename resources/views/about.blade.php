@@ -66,6 +66,7 @@
             <h1 class="text-center">Crea y comparte tus whishlist</h1>
             <p class="text-center">En wishare podras crear tus listas de productos y compartirlas con tus amigos.</p>
             <a href="{{ route('register') }}" class="btn btn-dark">Comienza</a>
+            
         </div>
     </div>
 </div>
@@ -79,11 +80,11 @@
     <div class="row mt-3">
         <div class="col-12 col-lg-6">
             <p>En wishare podrás organizar tus listas de productos e incluir los enlaces de estos mismos, para no perder los productos que te interesan.</p>
-            <p>Porás crear wishlists públicas y privadas, para que compartirlas con tus seguidores sea más facil aún.</p>
+            <p>Podrás crear wishlists públicas y privadas, para que compartirlas con tus seguidores sea más facil aún.</p>
         </div>
         <div class="col-12 col-lg-6">
             <p>Además, podrás acceder a descuentos exclusivos sólo por pertenecer a nuestra comunidad.</p>
-            <p>únete totalmente gratis, y podrás acceder a estas ofertas.</p>
+            <p>Únete totalmente gratis, y podrás acceder a estas ofertas.</p>
         </div>
     </div>
 </div>
