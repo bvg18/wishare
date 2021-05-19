@@ -47,6 +47,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'testname',
                 'email' => 'testemail@testemail.com',
                 'password' => Hash::make('test'),
+                'image' => 'bobesponja.jpg'
             ]   
         );
 
