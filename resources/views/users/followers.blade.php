@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    a{
+    color:black;
+    }
+    a:hover{
+        color:#517664;
+        text-decoration: none;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Followers</div>
+                <div class="card-header"><h3>Followers</h3></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -28,7 +37,7 @@
                     @foreach($followers as $followUser)
                         <tr>
                             <td>
-                                <img src="{{ asset('img/users/' . $followUser->image) }}" class="img-fluid rounded-circle" alt="No disponible" width="200" height="200">
+                                <img src="{{ asset('img/users/' . $followUser->image) }}" class="img-fluid rounded-circle" alt="No disponible" width="50" height="50">
                             </td-->
                             <td>
                                 <a href="{{action('UserController@showUser', [$followUser->id]) }}">

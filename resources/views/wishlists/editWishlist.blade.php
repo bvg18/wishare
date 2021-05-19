@@ -4,46 +4,48 @@
 <div class="container">
     <form action="{{action('WishlistController@editWishlist')}}" method="POST" enctype="multipart/form-data">
    @csrf
-   <div class="row">
-            <div class="col-8 offset2">
-
-                <div class="row">
-                    <h1>Edit Wishlist</h1>
-                </div>
-                
-                <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="name" class="form-control" type="text" name="name" value="{{ old('name') ?? $wishlist->name }}" autofocus>
+   <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Edit Wishlist</h3>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                    <div class="card-body">
+                        <div class="form-group row justify-content-center">
+                            <label for="name" class="col-md-8 col-form-label">{{ __('Name') }}</label>
 
-                    <div class="col-md-6">
-                        <input id="description" class="form-control" type="text" value="{{ old('description') ?? $wishlist->description }}" name="description">
-                    </div>
-                </div>
-                <div>
-                    <input type="hidden" name="wishlist_id" value = {{$wishlist_id}}>
-                </div>
+                            <div class="col-md-8">
+                                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') ?? $wishlist->name }}" autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <label for="description" class="col-md-8 col-form-label">{{ __('Description') }}</label>
 
-                <div class="form-group row"> 
-                     <label class="col-md-4 col-form-label text-md-right" for= "private"> Private </label>
-                    <div class="d-flex flex-wrap align-content-center col-md-4">
-                        @if($wishlist->private)
-                        <input type="checkbox" id="private" name="private" value="true" checked>
-                        @else
-                        <input type="checkbox" id="private" name="private" value="true">
-                        @endif
+                            <div class="col-md-8">
+                                <input id="description" class="form-control" type="text" value="{{ old('description') ?? $wishlist->description }}" name="description">
+                            </div>
+                        </div>
+                        <div>
+                            <input type="hidden" name="wishlist_id" value = {{$wishlist_id}}>
+                        </div>
+
+                        <div class="form-group row justify-content-center"> 
+                            <div class="d-flex flex-wrap col-md-8">
+                                <label class="col-form-label mr-3" for= "private"> Private </label>
+                                @if($wishlist->private)
+                                <input type="checkbox" id="private" name="private" value="true" checked>
+                                @else
+                                <input type="checkbox" id="private" name="private" value="true">
+                                @endif  
+                            </div>
+                        </div>
                         
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 ">
+                            <button class="btn btn-verde-oscuro btn-block">update wishlist</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-4 ml-3"></div>
-                    <button class="btn btn-primary">update wishlist</button>
                 </div>
             </div>
         </div>

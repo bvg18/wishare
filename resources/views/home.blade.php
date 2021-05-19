@@ -1,9 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    a{
+        color:black;
+    }
+    a:hover{
+        color:#517664;
+        text-decoration: none;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <!--div class="card">
                 <div class="card-header">Home</div>
 
@@ -19,25 +28,27 @@
                     
                     @foreach($prodOrdeded as $productOrder)
                     
-                        <div class="card">
-                            <div class="card-header">
+                        <div class="card shadow">
+                            <div class="card-header bg-white">
                                 <div class="d-flex justify-content-between">
                                     
                                     <a href="{{action('UserController@showUser', [$productOrder->wishlist->user->id]) }}">
                                         <!-- No se porque no va <img src="{{ asset('img/products/' . $productOrder->wishlist->user->image) }}" alt="No disponible" class="img-fluid rounded-circle" width="40" height="40">-->
                                         {{$productOrder->wishlist->user->name}}
                                     </a>
-                                    <strong>{{$productOrder->name}}</strong>
+                                    
                                     <a href="{{action('WishlistController@showWishlist', [$productOrder->wishlist->id]) }}">{{$productOrder->wishlist->name}}</a>
                                     
                                 </div>
                             </div>
                             <div class="card-body">
                                 <a href="{{$productOrder->url}}" target="_blank">
-                                    <img src="{{ asset('img/products/' . $productOrder->image) }}" class="rounded mx-auto d-block" alt="Ver" width="400" height="400">
+                                    <img src="{{ asset('img/products/' . $productOrder->image) }}" class="rounded mx-auto d-block img-fluid" alt="Ver" width="400" height="400">
                                 </a>
                                 <p>
-                                
+                                <a href="{{$productOrder->url}}" target="_blank">
+                                    <h3><b>{{$productOrder->name}}</b></h3>
+                                </a>
                                 </p>
                                 {{$productOrder->description}}
                                 <p>
