@@ -63,9 +63,9 @@
 <div id="seccion1" class="mt-n4">
     <div id="texto-hero">
         <div class="row justify-content-center">
-            <h1 class="text-center">Crea y comparte tus whishlist</h1>
-            <p class="text-center">En wishare podras crear tus listas de productos y compartirlas con tus amigos.</p>
-            <a href="{{ route('register') }}" class="btn btn-dark">Comienza</a>
+            <h1 class="text-center col-12">Crea y comparte tus whishlist</h1>
+            <p class="text-center col-12">En wishare podras crear tus listas de productos y compartirlas con tus amigos.</p>
+            <a href="{{ route('register') }}" class="btn btn-dark ">Comienza</a>
             
         </div>
     </div>
